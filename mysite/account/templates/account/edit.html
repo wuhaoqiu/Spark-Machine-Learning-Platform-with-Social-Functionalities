@@ -1,13 +1,25 @@
 {% extends "base2.html" %}
 {% block title %}Edit your account{% endblock %}
 {% block content %}
-    <h1>Edit your account</h1>
-    <p>You can edit your account using the following form:</p>
-{#    add enctype to enable image upload#}
-    <form action="" method="post" enctype="multipart/form-data">
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Save changes"></p>
-    </form>
+     <div class="container price col-lg-12">
+        <form action="" method="post" class="form-horizontal" role="form">
+            <h2 class="text-center" style="color: white">Edit your account</h2>
+            <p class="text-center" style="color: white">You can edit your account using the following form:</p>
+            {% for field in user_form %}
+                <div class="form-group">
+                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>
+                    <p class="text-center" style="color: white">{{ field }}</p>
+                </div>
+            {% endfor %}
+           {% for field in profile_form %}
+                <div class="form-group">
+                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>
+                    <p class="text-center" style="color: white">{{ field }}</p>
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            <p class="text-center"><button type="submit" class="btn btn-primary" style="max-width: 300px">Save Changes</button></p>
+        </form> <!-- /form -->
+        <br>
+    </div> <!-- ./container -->
 {% endblock %}

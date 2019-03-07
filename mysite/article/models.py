@@ -28,7 +28,7 @@ class Article(models.Model):
                              related_name='posted_articles',
                              )
     article_content=models.TextField()
-    publish_time=models.DateTimeField(default=timezone.now)
+    publish_time=models.DateField(default=timezone.now)
     # create_time=models.DateTimeField(auto_now_add=True)
     # status=models.CharField(max_length=20,
     #                         choices=ARTICLE_STATUS)

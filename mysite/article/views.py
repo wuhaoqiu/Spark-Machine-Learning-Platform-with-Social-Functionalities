@@ -42,19 +42,20 @@ def article_list(request, tag_slug=None):
             # comment_form.save can create a comment object,but donot save to database immediatley
             new_article = article_form.save(commit=False)
             new_article.author = request.user
-
-            import datetime
-            new_article.publish_time=datetime.datetime.now()
-            new_article.save()
-
             cd = article_form.cleaned_data
-            for each_tag in cd.get('tags'):
-                new_article.tags.add(each_tag)
+            from django.utils import timezone
+            from django.contrib import messages
+            if not Article.objects.filter(publish_time=timezone.now()).filter(label_in_url=cd.get('label_in_url')).exists():
+                new_article.save()
+                for each_tag in cd.get('tags'):
+                    new_article.tags.add(each_tag)
+                messages.success(request, 'profile and user information updated successfully')
+                from django.http.response import HttpResponseRedirect
+                from django.urls import reverse
+                return HttpResponseRedirect(reverse('article:article_list'))
+            else:
+                messages.error(request, 'updated failed, may because duplicate slug today')
 
-            # prevent submitting same forms again when refresh page
-            from django.http.response import HttpResponseRedirect
-            from django.urls import reverse
-            return HttpResponseRedirect(reverse('article:article_list'))
     # if this view is called by GET method, then render a brand new form
     else:
         article_form = ArticleForm()

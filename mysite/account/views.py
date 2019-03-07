@@ -101,11 +101,11 @@ def check_duplicate(self):
     if self.is_valid():
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
-            return False
-        else:
             return True
+        else:
+            return False
     else:
-        return False
+        return True
 
 @login_required
 def user_list(request):
