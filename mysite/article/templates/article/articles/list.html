@@ -1,0 +1,40 @@
+{# more built-in templates, see /templates/builtins/ #}
+{% extends "article/base.html" %}
+{% load article_tags %}
+
+{% block title %}My Blog {% endblock %}
+{% block content %}
+    <h1>My Blog</h1>
+
+    {% if tag %}
+        <h2>Articles tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+
+    {% for article in articles%}
+        <h2>
+            <a href="{{ article.get_absolute_url }}">
+                {{ article.title }}
+            </a>
+        </h2>
+        {#join each member in article.tag with ','#}
+        <p class="tags">Tags: {{ article.tags.all | join:"," }}</p>
+
+{#        display tag with correspong link #}
+        <p class="tags">
+        Tags:
+        {% for tag in article.tags.all %}
+            <a href="{% url "article:article_list_by_tag" tag.slug %}">
+                {{ tag.name }}
+            </a>
+            {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </p>
+
+        <p class="date">
+            Published {{ article.publish_time }} by {{ article.author }}
+        </p>
+        {{ article.body | truncatewords:30 | linebreaks }}
+    {% endfor %}
+<!--notice here, pass articles as current_page to pagination.html-->
+    {% include "../pagination.html" with current_page=articles %}
+{% endblock %}

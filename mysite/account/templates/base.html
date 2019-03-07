@@ -1,0 +1,83 @@
+{% load static %}
+{#see more about CSRF token protection, and automatically include them in the AJAx, https://docs.djangoproject.com/en/2.0/ref/csrf/#ajax #}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <span class="logo">Article</span>
+{#    the information about whetehre a user has loginin is stored in HttpRequest in middleware of auth #}
+{#    when accessing request.user, if user is login, you can find a User object, otherwise, you will find a AnonymousUser #}
+{#    The best way to check whether user login from HTTP request, is using this .is_authenticated #}
+        {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == "user_dashboard" %}class="selected"{%endif %}>
+                     <a href="{% url "user_dashboard" %}">My dashboard</a>
+                 </li>
+                 <li {% if section == "images" %}class="selected"{% endif %}>
+                     <a href="#">Images</a>
+                 </li>
+                  <li {% if section == "people" %}class="selected"{% endif %}>
+                     <a href="{% url 'user_list' %}">People</a>
+                  </li>
+           </ul>
+        {% endif %}
+
+        <span class="user">
+            {% if request.user.is_authenticated %}
+                 Hello {{ request.user.first_name }},
+                 <a href="{% url "logout" %}">Logout</a>
+              {% else %}
+                 <a href="{% url "login" %}">Log-in</a>
+            {% endif %}
+        </span>
+
+    </div>
+
+{#    the django message framework is gloabally included and it has incluede the context processor .context_processors.messages that includes the variable <messages>#}
+{#    so we can this <messages> variable in amy templates to display existing messages to users, back to views.edit() to check how this work#}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message | safe }}
+                    <a href="#" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script>
+{#    basic step is retrieve CSRF token from the csrftoken cookie, then send this token to AJAX request using the x-csrftoken header #}
+        var csrftoken = Cookies.get('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        {#before each time send AJAX request, check whether the request method is safe, if safe, set the x-csrftoken header#}
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        {#can use django template in the jsp, make sure when the whole DOM is loaded, then execute django js block#}
+        $(document).ready(function(){
+            {% block domready %}
+            {% endblock %}
+		});
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "../base.html" %}
+
+{% block title %} Share a post {% endblock %}
+
+{% block content %}
+    {% if sent %}
+        <h1>Email successfully sent</h1>
+        <p>
+            {{ article.title }} was successfully sent to {{ form.cleaned_data.to }}
+        </p>
+    {% else %}
+        <h1>share {{ article.title }} by e-mail </h1>
+        <p> {{ error }}</p>
+    <form action="" method="post">
+{#    convert form instance passed from view function to <p> element in html, there are also other methdos that  #}
+{#        can surround it by other tags like div or li or table,https://docs.djangoproject.com/en/2.1/topics/forms/#}
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="send e-mail">
+    </form>
+    {% endif %}
+
+{% endblock %}

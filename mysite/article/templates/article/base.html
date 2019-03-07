@@ -1,0 +1,36 @@
+<!--tell django to load a template whose tag name is static-->
+{% load static %}
+{#load our customied template tag#}
+{% load article_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/blog.css" %}">
+</head>
+<body>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div id="sidebar">
+        <h2>My blog</h2>
+            <p>This is my blog. I have writtedn {% total_articles %} articles so far</p>
+
+        <h3>Latest articles</h3>
+{#        pass 3 as a paramter to customized template tag #}
+        {% show_latest_articles 3 %}
+
+        <h3>Most popular articles</h3>
+        {% show_most_popular_articles as most_comment_articles %}
+        {% for article in most_comment_articles %}
+        <li>
+            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+        </li>
+        {% endfor %}
+
+    </div>
+</body>
+</html>
