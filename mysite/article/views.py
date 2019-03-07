@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Article,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from .forms import ShareEmailForm,CommentForm,SearchForm,ArticleForm
@@ -68,11 +68,11 @@ def article_list(request, tag_slug=None):
 @login_required
 def article_detail(request,year,month,day,label_in_url):
     # query the Article table using filter as below
-    article=get_object_or_404(Article,label_in_url=label_in_url,
+    article=get_list_or_404(Article,label_in_url=label_in_url,
                            publish_time__year=year,
                            publish_time__month=month,
                            publish_time__day=day,
-                           )
+                           )[0]
 
     # list active comments
     comments=article.article_comments.all()

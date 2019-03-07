@@ -44,8 +44,8 @@
           <label for="drop" class="toggle">Menu</label>
           <input type="checkbox" id="drop">
           <ul class="menu mt-2">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="about.html">Articles</a></li>
+            <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
+            <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="{% url 'article:article_list' %}">Articles</a></li>
             <li><a href="service.html">People</a></li>
             <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
               <!-- First Tier Drop Down -->
@@ -78,7 +78,7 @@
       <div class="inner_breadcrumb  ml-4">
         <ul class="short_ls">
           <li>
-            <a href="index.html">Home Page</a>
+            <a href="{% url 'main_page' %}">Home Page</a>
             <span>/ /</span>
           </li>
           <li>{% block title %}{% endblock %}</li>
