@@ -151,10 +151,10 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 # setting for auth
-LOGIN_REDIRECT_URL = 'user_dashboard' #this tell django wihich url to redirect when successfully login if not 'next variable' is offered
+LOGIN_REDIRECT_URL = 'main_page' #this tell django wihich url to redirect when successfully login if not 'next variable' is offered
 LOGIN_URL = 'login'#the URL to redirect the user to login, especially for cases using login_required decorator
-LOGOUT_URL = 'logout'
-
+LOGOUT_URL = 'main_page'
+LOGOUT_REDIRECT_URL='main_page'
 
 # print the BASE_DIR
 # print ("base dir path", BASE_DIR)

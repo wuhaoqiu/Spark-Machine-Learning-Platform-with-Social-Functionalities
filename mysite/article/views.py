@@ -16,7 +16,8 @@ from taggit.models import Tag
 @login_required
 def article_list(request, tag_slug=None):
 
-    all_articles=Article.published_set.all()
+    all_articles=Article.objects.all()
+    all_tags=Tag.objects.all()
     tag=None
 
     if tag_slug:
@@ -24,7 +25,7 @@ def article_list(request, tag_slug=None):
         all_articles=all_articles.filter(tags__in=[tag])
 
     # each page only display 2 posts
-    paginator=Paginator(all_articles,8)
+    paginator=Paginator(all_articles,1)
     page=request.GET.get('page')
     try:
         one_page_articles=paginator.page(page)
@@ -34,9 +35,10 @@ def article_list(request, tag_slug=None):
         #retrieve the last page content if page number beyond range
         one_page_articles=paginator.page(paginator.num_pages)
     return render(request,
-                  'article/articles/list.html',
+                  'article/articles/article_list.html',
                   {'articles':one_page_articles,
-                   'tag':tag})
+                   'tag':tag,
+                   'tags':all_tags})
 
 @login_required
 def article_detail(request,year,month,day,label_in_url):

@@ -20,7 +20,7 @@ def total_articles():
     return Article.published_set.count()
 
 # .inclusin_tag() processes the data and returns a rendered template
-# 这里，我们先用cnclusiontag（）制定了要渲染的template，然后在function里把数据取了出来，通过return把取出来的数据放进了template里
+# 这里，我们先用inclusiontag（）制定了要渲染的template，然后在function里把数据取了出来，通过return把取出来的数据放进了template里
 # 最后把这个用数据渲染过的template返回
 @register.inclusion_tag('article/articles/latest_articles.html')
 def show_latest_articles(count=5):

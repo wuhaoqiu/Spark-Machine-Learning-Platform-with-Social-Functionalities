@@ -1,7 +1,5 @@
-<ul>
     {% for article in latest_articles %}
-    <li>
+    <ul class="list-unstyled mb-0">
         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-    </li>
+    </ul>
     {% endfor %}
-</ul>
