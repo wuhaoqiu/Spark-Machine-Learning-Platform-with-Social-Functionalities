@@ -17,7 +17,7 @@ urlpatterns=[
     path('<int:year>/<int:month>/<int:day>/<slug:label_in_url>',
          views.article_detail,
          name='article_detail'),
-    path('<int:article_id>/share/',views.share_article,name='article_share'),
+    # path('<int:article_id>/share/',views.share_article,name='article_share'),
     path(r'search/', search_view.ArticleSearchView(), name='haystack_search'),
 
 ]
