@@ -68,8 +68,12 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article=models.ForeignKey(Article,on_delete=models.CASCADE,related_name='article_comments')
-    name=models.CharField(max_length=40)
-    email=models.EmailField()
+    user=models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name='posted_comments',null=True
+                             )
+    # name=models.CharField(max_length=40)
+    # email=models.EmailField()
     comment_content=models.TextField()
     created=models.DateTimeField(auto_now_add=True)
     # active=models.BooleanField(default=True)
@@ -77,4 +81,4 @@ class Comment(models.Model):
     class Meta:
         ordering=('created',)
         def __str__(self):
-            return "Commented from {} on {}".format(self.name,self.article)
+            return "Commented from on {}".format(self.article)

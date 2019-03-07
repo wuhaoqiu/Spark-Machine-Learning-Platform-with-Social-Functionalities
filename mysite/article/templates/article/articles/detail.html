@@ -30,7 +30,7 @@
     <div class="comment">
         <p class="info">
 {#            record the current loop time using forloop.counter #}
-            Comment {{ forloop.counter }} by {{ comment.name }}
+            Comment {{ forloop.counter }} by {{ comment.user }}
             {{ comment.created }}
         </p>
         {{ comment.comment_content | linebreaks }}

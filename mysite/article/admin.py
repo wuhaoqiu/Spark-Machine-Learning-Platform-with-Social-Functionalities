@@ -18,8 +18,8 @@ class CustomizedArticle(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('email','article','created','comment_content')
-    list_filter = ('created',)
-    search_fields = ('comment_content','email')
+    list_display = ('user','article','created','comment_content')
+    list_filter = ('created','user')
+    search_fields = ('comment_content','user')
 
 

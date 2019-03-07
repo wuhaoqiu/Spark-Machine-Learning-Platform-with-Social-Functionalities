@@ -4,6 +4,7 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from .forms import ShareEmailForm,CommentForm,SearchForm
 from django.core.mail import send_mail
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
 
 from taggit.models import Tag
 
@@ -12,6 +13,7 @@ from taggit.models import Tag
 # Create your views here.
 
 # tag_slug comes with the URL of this request
+@login_required
 def article_list(request, tag_slug=None):
 
     all_articles=Article.published_set.all()
@@ -36,17 +38,17 @@ def article_list(request, tag_slug=None):
                   {'articles':one_page_articles,
                    'tag':tag})
 
+@login_required
 def article_detail(request,year,month,day,label_in_url):
     # query the Article table using filter as below
     article=get_object_or_404(Article,label_in_url=label_in_url,
-                           status="P",
                            publish_time__year=year,
                            publish_time__month=month,
                            publish_time__day=day,
                            )
 
     # list active comments
-    comments=article.article_comments.filter(active=True)
+    comments=article.article_comments.all()
     new_comment=None
 
     if request.method=='POST':
@@ -55,6 +57,7 @@ def article_detail(request,year,month,day,label_in_url):
             # comment_form.save can create a comment object,but donot save to database immediatley
             new_comment=comment_form.save(commit=False)
             new_comment.article=article
+            new_comment.user=request.user
             new_comment.save()
     # if this view is called by GET method, then render a brand new form
     else:
@@ -75,6 +78,7 @@ def article_detail(request,year,month,day,label_in_url):
                    'comment_form':comment_form,
                    'similar_articles':similar_articles,})
 
+@login_required
 def share_article(request,article_id):
     # retrieve artivle by its id
     article=get_object_or_404(Article,id=article_id,status='P')

@@ -23,7 +23,7 @@ class CommentForm(forms.ModelForm):
     # each file in the model has a default corresponding input type
     class Meta:
         model=Comment
-        fields=('name','email','comment_content')
+        fields=('comment_content',)
 
 class SearchForm(SearchForm):
     def no_query_found(self):
