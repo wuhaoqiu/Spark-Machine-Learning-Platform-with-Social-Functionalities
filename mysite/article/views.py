@@ -24,8 +24,8 @@ def article_list(request, tag_slug=None):
         tag=get_object_or_404(Tag,slug=tag_slug)
         all_articles=all_articles.filter(tags__in=[tag])
 
-    # each page only display 2 posts
-    paginator=Paginator(all_articles,1)
+    # each page only display 6 posts
+    paginator=Paginator(all_articles,6)
     page=request.GET.get('page')
     try:
         one_page_articles=paginator.page(page)
@@ -51,6 +51,18 @@ def article_detail(request,year,month,day,label_in_url):
 
     # list active comments
     comments=article.article_comments.all()
+
+    # each page only display 6 posts
+    paginator = Paginator(comments, 6)
+    page = request.GET.get('page')
+    try:
+        one_page_comments = paginator.page(page)
+    except PageNotAnInteger:
+        one_page_comments = paginator.page(1)
+    except EmptyPage:
+        # retrieve the last page content if page number beyond range
+        one_page_comments = paginator.page(paginator.num_pages)
+
     new_comment=None
 
     if request.method=='POST':
@@ -68,14 +80,16 @@ def article_detail(request,year,month,day,label_in_url):
     # flat=True, let tuple returned by values_list() to a python list
     article_tags_list=article.tags.values_list('id',flat=True)
     similar_articles=Article.published_set.filter(tags__in=article_tags_list).exclude(id=article.id)
-    # use Count() to generate a new filed to those retrieved articles, named same_tags, then
-    # order those articles by this new attribute - same_tags
+
+        # use Count() to generate a new filed to those retrieved articles, named same_tags, then
+        # order those articles by this new attribute - same_tags
     similar_articles=similar_articles.annotate(same_tags=Count('tags')).order_by('-same_tags','-publish_time')[:3]
 
+
     # use the object returned by above filter to render detail.html
-    return render(request,'article/articles/detail.html',
+    return render(request,'article/articles/article_detail.html',
                   {'article':article,
-                   'comments':comments,
+                   'comments':one_page_comments,
                    'new_comment':new_comment,
                    'comment_form':comment_form,
                    'similar_articles':similar_articles,})

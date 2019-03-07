@@ -1,0 +1,119 @@
+{% extends 'base2.html' %}
+{% load article_tags %}
+{% load thumbnail %}
+
+{% block title %} Article Detail {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="my-4">Article Detail</h1>
+                {% if tag %}
+                    <small>Articles tagged with "{{ tag.name }}"</small>
+                {% endif %}
+                <!-- Blog Post -->
+
+                <div class="card mb-4 bg-light border-dark">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ article.title }}</h2>
+                        <p class="card-text"><b>Content: </b>{{ article.article_content | linebreaks }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>
+                            Tags:
+                            {% for tag in article.tags.all %}
+                                <a href="{% url "article:article_list_by_tag" tag.slug %}">
+                                    {{ tag.name }}
+                                </a>
+                                {% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on {{ article.publish_time }} by {{ article.author }}
+                    </div>
+                </div>
+                <div class="card mb-4 bg-light">
+                    <!-- https://mdbootstrap.com/docs/jquery/modals/forms/-->
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Comments!</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-5">
+                                    <form action="" method="post">
+                                        {{ comment_form.as_p }}
+                                        <button class="btn btn-deep-orange">
+                                            {% csrf_token %}
+                                            <p><input type="submit" value="add comment"></p>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal"
+                           data-target="#modalRegisterForm">Launch
+                            Comment Form to Leave Comment</a>
+                    </div>
+
+                </div>
+                <!--   end of modal-->
+
+                {#            similar posts part#}
+                <div class="card mb-4 bg-white border-primary">
+                    <div class="card-body">
+                        <h4>Similar Posts</h4>
+                        {% for article in similar_articles %}
+                            <p>
+                                <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                            </p>
+                        {% empty %}
+                            There are no similar articles
+                        {% endfor %}
+                    </div>
+                </div>
+                {#            end of similar posts part#}
+
+                {#            comment part #}
+                <div>
+                    <h4>Below are comments</h4>
+                    <br>
+                    {% for comment in comments %}
+                        <div class="card bg-light border-success mb-4">
+                            {#                        <img class="d-flex mr-3 rounded-circle" src="{{ comment.user.profile.photo.url }}" alt="">#}
+                            <div class="card-body">
+                                <p class="card-title">Comment {{ forloop.counter }} by {{ comment.user }}
+                                    on {{ comment.created }}</p>
+                                <p class="card-text">{{ comment.comment_content | linebreaks }}</p>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="card bg-light mb-4">
+                            <div class="card-body">
+                                <p>there are no comments yet.</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% include "article/pagination.html" with current_page=comments %}
+                </div>
+                {#            end of comments part #}
+            </div>
+            <!--      end of colmd 8-->
+            {% include 'article/widgets.html' %}
+        </div>
+    </div>
+
+{% endblock %}
