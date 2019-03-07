@@ -14,37 +14,84 @@
                 {% if tag %}
                     <small>Articles tagged with "{{ tag.name }}"</small>
                 {% endif %}
-                <!-- Blog Post -->
-            {% for article in articles %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ article.title }}</h2>
-                        <p class="card-text"> <b>Content: </b>{{ article.article_content | truncatewords:30 | linebreaks }}</p>
-                        <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+
+                <div class="card mb-4 bg-light border-dark">
+                    <!-- https://mdbootstrap.com/docs/jquery/modals/forms/-->
+                    <!-- Modal -->
+                    <div class="modal fade bd-example-modal-lg" id="modalRegisterForm" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Articles!</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-5">
+                                    <form action="" method="post">
+                                        {#                                        {{ article_form.as_p }}#}
+                                        {% for field in article_form %}
+                                            <div class="form-group">
+                                                <p class="text-center"><label>{{ field.label_tag }}</label></p>
+                                                <p class="text-center">{{ field }}</p>
+                                            </div>
+                                        {% endfor %}
+                                        <p class="text-center">
+                                            <button class="btn btn-success">
+                                                {% csrf_token %}
+                                                <input type="submit" value="Write an Article">
+                                            </button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        <p>
-                            Tags:
-                            {% for tag in article.tags.all %}
-                                <a href="{% url "article:article_list_by_tag" tag.slug %}">
-                                    {{ tag.name }}
-                                </a>
-                                {% if not forloop.last %},{% endif %}
-                            {% endfor %}
-                        </p>
+
+                    <div class="text-center">
+                        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal"
+                           data-target="#modalRegisterForm">Launch
+                            Article Form to Write </a>
                     </div>
-                 <div class="card-footer text-muted">
-                        Posted on {{ article.publish_time }} by {{ article.author }}
-                 </div>
+
                 </div>
-            {% endfor %}
-            {% include "article/pagination.html" with current_page=articles %}
+                <!--   end of modal-->
+
+
+                <!-- Blog Post -->
+                {% for article in articles %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ article.title }}</h2>
+                            <p class="card-text">
+                                <b>Content: </b>{{ article.article_content | truncatewords:30 | linebreaks }}</p>
+                            <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>
+                                Tags:
+                                {% for tag in article.tags.all %}
+                                    <a href="{% url "article:article_list_by_tag" tag.slug %}">
+                                        {{ tag.name }}
+                                    </a>
+                                    {% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted on {{ article.publish_time }} by {{ article.author }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% include "article/pagination.html" with current_page=articles %}
             </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">
 
-{#                most popular articles based on comments#}
+                {#                most popular articles based on comments#}
                 <div class="card my-4">
                     <h5 class="card-header">We have written {% total_articles %} articles so far</h5>
                     <br>
@@ -52,35 +99,15 @@
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
                             {% show_most_popular_articles as most_comment_articles %}
-                            {% for article in latest_articles %}
+                            {% for article in most_comment_articles %}
                                 <li>
                                     <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
                                 </li>
+                                <p></p>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
-
-                <!-- Categories Widget -->
-                <div class="card my-4">
-                    <h5 class="card-header">Tags</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    {% for tag in all_tags %}
-                                        <li>
-                                            <a href="{% url "article:article_list_by_tag" tag.slug %}">
-                                                {{ tag.name }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Side Widget -->
                 <div class="card my-4">
                     <h5 class="card-header">Latest Articles</h5>

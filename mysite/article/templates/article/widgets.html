@@ -9,7 +9,7 @@
         <div class="card-body">
             <ul class="list-unstyled mb-0">
                 {% show_most_popular_articles as most_comment_articles %}
-                {% for article in latest_articles %}
+                {% for article in most_comment_articles %}
                     <li>
                         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
                     </li>

@@ -1,6 +1,7 @@
 #author:Haoqiu Wu Time 19.2.25
 from django import forms
 from .models import Comment
+from .models import Article
 
 from haystack.forms import SearchForm
 
@@ -24,6 +25,12 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model=Comment
         fields=('comment_content',)
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model=Article
+        fields=('title','article_content','label_in_url','tags')
 
 class SearchForm(SearchForm):
     def no_query_found(self):

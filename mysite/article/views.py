@@ -1,8 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Article,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
-from .forms import ShareEmailForm,CommentForm,SearchForm
-from django.core.mail import send_mail
+from .forms import ShareEmailForm,CommentForm,SearchForm,ArticleForm
+# from django.core.mail import send_mail
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 
@@ -17,7 +17,6 @@ from taggit.models import Tag
 def article_list(request, tag_slug=None):
 
     all_articles=Article.objects.all()
-    all_tags=Tag.objects.all()
     tag=None
 
     if tag_slug:
@@ -34,11 +33,37 @@ def article_list(request, tag_slug=None):
     except EmptyPage:
         #retrieve the last page content if page number beyond range
         one_page_articles=paginator.page(paginator.num_pages)
+
+    new_article = None
+
+    if request.method == 'POST':
+        article_form = ArticleForm(data=request.POST)
+        if article_form.is_valid():
+            # comment_form.save can create a comment object,but donot save to database immediatley
+            new_article = article_form.save(commit=False)
+            new_article.author = request.user
+
+            import datetime
+            new_article.publish_time=datetime.datetime.now()
+            new_article.save()
+
+            cd = article_form.cleaned_data
+            for each_tag in cd.get('tags'):
+                new_article.tags.add(each_tag)
+
+            # prevent submitting same forms again when refresh page
+            from django.http.response import HttpResponseRedirect
+            from django.urls import reverse
+            return HttpResponseRedirect(reverse('article:article_list'))
+    # if this view is called by GET method, then render a brand new form
+    else:
+        article_form = ArticleForm()
+
     return render(request,
                   'article/articles/article_list.html',
                   {'articles':one_page_articles,
                    'tag':tag,
-                   'tags':all_tags})
+                   'article_form':article_form})
 
 @login_required
 def article_detail(request,year,month,day,label_in_url):
@@ -73,6 +98,17 @@ def article_detail(request,year,month,day,label_in_url):
             new_comment.article=article
             new_comment.user=request.user
             new_comment.save()
+
+            # prevent submitting same forms again when refresh page
+            from django.http.response import HttpResponseRedirect
+            from django.urls import reverse
+            return HttpResponseRedirect(reverse('article:article_detail',
+                       args=[
+                           article.publish_time.year,
+                           article.publish_time.month,
+                           article.publish_time.day,
+                           article.label_in_url
+                       ]))
     # if this view is called by GET method, then render a brand new form
     else:
         comment_form=CommentForm()

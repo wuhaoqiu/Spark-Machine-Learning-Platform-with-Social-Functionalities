@@ -30,7 +30,7 @@ def show_latest_articles(count=5):
 
 @register.simple_tag
 def show_most_popular_articles(count=5):
-    return Article.published_set.annotate(num_of_comments=Count('article_comments')).order_by('-num_of_comments')[:count]
+    return Article.objects.annotate(num_of_comments=Count('article_comments')).order_by('-num_of_comments')[:count]
 
 # create a new customized filter named markdown not markdown_format
 @register.filter(name="markdown")
