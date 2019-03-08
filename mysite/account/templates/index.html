@@ -34,7 +34,7 @@
     <!-- header -->
     <div class="headder-top">
         <!-- nav -->
-        <nav>
+        <nav style="min-width: 300px">
             <div id="logo">
                 <h1><a href="#">UBCO CRN</a></h1>
             </div>
@@ -200,8 +200,7 @@
 
             <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
                 <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'article:haystack_search' %}">Click Here to Search</a></button>
                 </form>
             </div>
 

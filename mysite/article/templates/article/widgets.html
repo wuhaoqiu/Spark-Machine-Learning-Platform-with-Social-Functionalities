@@ -1,7 +1,6 @@
 {% load article_tags %}
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4">
-    <!-- Search Widget -->
     <div class="card my-4">
         <h5 class="card-header">We have written {% total_articles %} articles so far</h5>
         <br>
@@ -13,6 +12,7 @@
                     <li>
                         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
                     </li>
+                    <p></p>
                 {% endfor %}
             </ul>
         </div>

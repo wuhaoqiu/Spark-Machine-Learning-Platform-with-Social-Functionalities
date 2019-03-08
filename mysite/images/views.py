@@ -13,8 +13,10 @@ from common.decorators import ajax_required
 import redis
 from django.conf import settings
 # connect to redis
-r=redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
-
+try:
+    r=redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
+except Exception:
+    pass
 
 @login_required
 def image_list(request):
@@ -98,14 +100,17 @@ def image_create(request):
 def image_detail(request,id,slug):
     image=get_object_or_404(Image,id=id,slug=slug)
     total_likes=image.total_likes
-    # increment view times of an image by one
-    # this method can increment the value of given key by one, if this key doesnt exist, then create one
-    # using : to separate is the naming convention of Redis, object_type:id:object's attribute
-    # so this will operate each time when this view is called
-    total_views=r.incr('image:{}:views'.format(image.id))
-    # store the number of how many people view this image into a set called image_ranking, in this set, each item key is its id,
-    # then each time this view is called, increment view time by 1,also, this set is globally
-    r.zincrby('image_ranking',image.id,1)
+    try:
+        # increment view times of an image by one
+        # this method can increment the value of given key by one, if this key doesnt exist, then create one
+        # using : to separate is the naming convention of Redis, object_type:id:object's attribute
+        # so this will operate each time when this view is called
+        total_views=r.incr('image:{}:views'.format(image.id))
+        # store the number of how many people view this image into a set called image_ranking, in this set, each item key is its id,
+        # then each time this view is called, increment view time by 1,also, this set is globally
+        r.zincrby('image_ranking',image.id,1)
+    except Exception:
+        pass
     return render(request,'images/image/detail.html',{'section':'images',
                                                       'image':image,
                                                       'total_views':total_views,
