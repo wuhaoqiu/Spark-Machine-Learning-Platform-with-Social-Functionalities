@@ -7,11 +7,11 @@ from .forms import LoginForm, UserRegistrationForm, ProfileEditForm, UserEditFor
 from .models import Profile
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from common.decorators import ajax_required
-from .models import Contact
+# from django.shortcuts import get_object_or_404
+# from django.http import JsonResponse
+# from django.views.decorators.http import require_POST
+# from common.decorators import ajax_required
+# # from .models import Contact
 
 
 # Create your views here.
@@ -122,34 +122,34 @@ def user_list(request):
         one_page_users=paginator.page(paginator.num_pages)
     return render(request,'account/user/list.html',{'section': 'people','users': one_page_users})
 
-@login_required
-def user_detail(request, username):
-    # user = get_object_or_404(User,username=username,is_active=True)
-    user = get_object_or_404(User,username=username)
-    # later we can use this to show images by popularity
-    # images_by_popularity = Image.objects.order_by('-total_likes')
-    return render(request,'account/user/detail.html',{'section': 'people','user': user})
+# @login_required
+# def user_detail(request, username):
+#     # user = get_object_or_404(User,username=username,is_active=True)
+#     user = get_object_or_404(User,username=username)
+#     # later we can use this to show images by popularity
+#     # images_by_popularity = Image.objects.order_by('-total_likes')
+#     return render(request,'account/user/detail.html',{'section': 'people','user': user})
 
-@ajax_required
-@require_POST
-@login_required
-def user_follow(request):
-    user_id = request.POST.get('id')
-    action = request.POST.get('action')
-    if user_id and action:
-        try:
-            user = User.objects.get(id=user_id)
-            if action == 'follow':
-                Contact.objects.get_or_create(
-                    user_from=request.user,user_to=user)
-            else:
-                    # add(), remove() methods cant be used because of use of intermediary
-                    Contact.objects.filter(user_from=request.user,user_to=user).delete()
-            return JsonResponse({'status':'ok'})
-        except User.DoesNotExist:
-            return JsonResponse({'status':'error'})
-    return JsonResponse({'status':'error'})
-
+# @ajax_required
+# @require_POST
+# @login_required
+# def user_follow(request):
+#     user_id = request.POST.get('id')
+#     action = request.POST.get('action')
+#     if user_id and action:
+#         try:
+#             user = User.objects.get(id=user_id)
+#             if action == 'follow':
+#                 Contact.objects.get_or_create(
+#                     user_from=request.user,user_to=user)
+#             else:
+#                     # add(), remove() methods cant be used because of use of intermediary
+#                     Contact.objects.filter(user_from=request.user,user_to=user).delete()
+#             return JsonResponse({'status':'ok'})
+#         except User.DoesNotExist:
+#             return JsonResponse({'status':'error'})
+#     return JsonResponse({'status':'error'})
+#
 
 @login_required
 def user_article_list(request):
