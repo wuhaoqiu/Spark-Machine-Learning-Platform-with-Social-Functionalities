@@ -1,25 +1,32 @@
 {% extends "base2.html" %}
 {% load thumbnail %}
-{% block title %}People{% endblock %}
+{% block title %}People Lists{% endblock %}
 {% block content %}
-    <h1>People</h1>
-    <div id="people-list">
-    {% for user in users %}
-        <div class="user">
-{#        the reason why the user can use this .get_absolute_url method is we set it in the setting.py using ABSOLUTE_URL_OVERRIDES #}
-            <a href="{{ user.get_absolute_url }}">
-            {% thumbnail user.profile.photo "180x180" crop="100%" as im %}
-                <img src="{{ im.url }}">
-            {% endthumbnail %}
-            </a>
-            <div class="info">
-                <a href="{{ user.get_absolute_url }}" class="title">
-                {{ user.get_full_name }}
-                </a>
+    <div class="container">
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-12">
+                <h1 class="my-4">Peoples</h1>
+                <!-- Blog Post -->
+                <div class="card-deck">
+                    {% for user in users %}
+                        <div class="card mb-4" style="max-width: 200px">
+                        {% thumbnail user.profile.photo "180x180" crop="100%" as im %}
+                            <img class="img-thumbnail" src="{{ im.url }}" alt="Card image cap">
+                        {% endthumbnail %}
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <b>Name: </b>{{ user.get_full_name | truncatewords:30 | linebreaks }}</p>
+                                <a href="{{ user.get_absolute_url }}" class="btn btn-primary">See detail &rarr;</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% include "article/pagination.html" with current_page=users %}
             </div>
         </div>
-    {% endfor %}
-    {% include "article/../../../../article/templates/pagination.html" with current_page=users %}
+        <!-- /.row -->
     </div>
+    <!-- /.container -->
 
 {% endblock %}

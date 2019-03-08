@@ -46,7 +46,8 @@
           <ul class="menu mt-2">
             <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
             <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="{% url 'article:article_list' %}">Articles</a></li>
-            <li><a href="service.html">People</a></li>
+            <li><a href="{% url 'user_list' %}">People</a></li>
+            <li><a href="{% url 'images:list' %}">Image</a></li>
             <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
               <!-- First Tier Drop Down -->
               <label for="drop-2" class="toggle toogle-2">Models <span class="fa fa-angle-down" aria-hidden="true"></span>
@@ -61,7 +62,8 @@
             </li>
               {% if request.user.is_authenticated %}
                  <li>
-                 <a href="{% url "logout" %}">Hello {{ request.user.first_name }},You can Logout Here</a>
+                 <a href="{% url "user_dashboard" %}">Hello {{ request.user.first_name }},Dashboard here</a>
+                     <a href="{% url "logout" %}">Logout Here</a>
                  </li>
               {% else %}
                   <li><a href="{% url "login" %}">Log-in</a></li>

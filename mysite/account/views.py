@@ -111,7 +111,7 @@ def check_duplicate(self):
 def user_list(request):
     # users = User.objects.filter(is_active=True)
     users = User.objects.filter()
-    paginator=Paginator(users,8)
+    paginator=Paginator(users,6)
     page=request.GET.get('page')
     try:
         one_page_users=paginator.page(page)
@@ -149,3 +149,24 @@ def user_follow(request):
         except User.DoesNotExist:
             return JsonResponse({'status':'error'})
     return JsonResponse({'status':'error'})
+
+
+@login_required
+def user_article_list(request):
+
+    from article.models import Article
+    all_articles=Article.objects.filter(author=request.user)
+    # each page only display 6 posts
+    paginator=Paginator(all_articles,6)
+    page=request.GET.get('page')
+    try:
+        one_page_articles=paginator.page(page)
+    except PageNotAnInteger:
+        one_page_articles=paginator.page(1)
+    except EmptyPage:
+        #retrieve the last page content if page number beyond range
+        one_page_articles=paginator.page(paginator.num_pages)
+
+    return render(request,
+                  'account/user/user_article_list.html',
+                  {'articles':one_page_articles,})

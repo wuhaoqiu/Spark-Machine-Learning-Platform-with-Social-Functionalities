@@ -2,7 +2,7 @@
 {% block title %}Edit your account{% endblock %}
 {% block content %}
      <div class="container price col-lg-12">
-        <form action="" method="post" class="form-horizontal" role="form">
+        <form action="" method="post"  enctype="multipart/form-data">
             <h2 class="text-center" style="color: white">Edit your account</h2>
             <p class="text-center" style="color: white">You can edit your account using the following form:</p>
             {% for field in user_form %}

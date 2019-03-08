@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -16,10 +17,24 @@ r=redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=setti
 
 
 @login_required
+def image_list(request):
+    images = Image.objects.all()
+    paginator=Paginator(images,6)
+    page=request.GET.get('page')
+    try:
+        one_page_images=paginator.page(page)
+    except PageNotAnInteger:
+        one_page_images=paginator.page(1)
+    except EmptyPage:
+        #retrieve the last page content if page number beyond range
+        one_page_images=paginator.page(paginator.num_pages)
+    return render(request,'images/image/list_ajax.html',{'images': one_page_images})
+
+@login_required
 def image_create(request):
     if request.method == 'POST':
         # form is sent
-        form = ImageCreateForm(data=request.POST)
+        form = ImageCreateForm(data=request.POST,files=request.FILES)
         if form.is_valid():
             # form data is valid
             cd = form.cleaned_data
@@ -31,9 +46,11 @@ def image_create(request):
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
             return redirect(new_item.get_absolute_url())
+        else:
+            messages.error(request,'fail to upload')
     else:
         # assume data comes from GET method using js tool, containing a url and title attributes
-        form = ImageCreateForm(data=request.GET)
+        form = ImageCreateForm()
     return render(request,'images/image/create.html',{'section': 'images','form': form})
 
 def image_detail(request,id,slug):

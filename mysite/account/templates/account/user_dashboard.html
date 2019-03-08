@@ -1,11 +1,36 @@
 {% extends "base2.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-    <h1>Dashboard</h1>
-    {% with total_images_created=request.user.images_created.count %}
-    <p>Welcome to your dashboard. You have bookmarked {{ total_images_created }} image{{ total_images_created|pluralize }}.</p>
-    {% endwith %}
-    <p>Drag the following button to your bookmarks toolbar to bookmark images from other websites  <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="button">Bookmark it</a><p>
-    <p>Welcome to your dashboard.you can <a href="{% url 'edit' %}">edit your profile</a> or</p>
-    <p><a href="{% url 'password_change' %}">change password</a></p>
+{#    <h1>Dashboard</h1>#}
+{#    {% with total_images_created=request.user.images_created.count %}#}
+{#        <p>Welcome to your dashboard. You have bookmarked {{ total_images_created }}#}
+{#            image{{ total_images_created|pluralize }}.</p>#}
+{#    {% endwith %}#}
+{#   #}
+{#    <p>Welcome to your dashboard.you can <a href="{% url 'edit' %}">edit your profile</a> or</p>#}
+{#    <p><a href="{% url 'password_change' %}">change password</a></p>#}
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="list-group ">
+                    <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+                    <a href="{% url 'edit' %}" class="list-group-item list-group-item-action">Edit your profile</a>
+                    <a href="{% url 'password_change' %}" class="list-group-item list-group-item-action">Change your password</a>
+                    <a href="{% url 'user_article_list' %}" class="list-group-item list-group-item-action">Your articles</a>
+                    <a href="{% url 'images:create' %}" class="list-group-item list-group-item-action">Create an Image</a>
+                    <a href="#" class="list-group-item list-group-item-action">People you following</a>
+                    <a href="#" class="list-group-item list-group-item-action">Images you like</a>
+                    <a href="#" class="list-group-item list-group-item-action">Category</a>
+                    <a href="#" class="list-group-item list-group-item-action">New</a>
+                    <a href="#" class="list-group-item list-group-item-action">Comments</a>
+                    <a href="#" class="list-group-item list-group-item-action">Appearance</a>
+                    <a href="#" class="list-group-item list-group-item-action">Reports</a>
+                    <a href="#" class="list-group-item list-group-item-action">Settings</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

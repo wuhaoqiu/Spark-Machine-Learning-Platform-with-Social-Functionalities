@@ -1,16 +1,49 @@
-{% load thumbnail %}
+{#{% load thumbnail %}#}
+{##}
+{#{% for image in images %}#}
+{#    <div class="image">#}
+{#        <a href="{{ image.get_absolute_url }}">#}
+{#            {% thumbnail image.image "300x300" crop="100%" as im %}#}
+{#                <a href="{{ image.get_absolute_url }}">#}
+{#                    <img src="{{ im.url }}">#}
+{#                </a>#}
+{#            {% endthumbnail %}#}
+{#        </a>#}
+{#        <div class="info">#}
+{#            <a href="{{ image.get_absolute_url }}" class="title">{{ image.title }}</a>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endfor %}#}
 
-{% for image in images %}
-    <div class="image">
-        <a href="{{ image.get_absolute_url }}">
-            {% thumbnail image.image "300x300" crop="100%" as im %}
-                <a href="{{ image.get_absolute_url }}">
-                    <img src="{{ im.url }}">
-                </a>
-            {% endthumbnail %}
-        </a>
-        <div class="info">
-            <a href="{{ image.get_absolute_url }}" class="title">{{ image.title }}</a>
+{% extends "base2.html" %}
+{% load thumbnail %}
+{% block title %}Image Lists{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-12">
+                <h1 class="my-4">Images</h1>
+                <!-- Blog Post -->
+                <div class="card-deck">
+                    {% for image in images %}
+                        <div class="card mb-4" style="max-width: 200px">
+                        {% thumbnail image.image "200x200" crop="100%" as im %}
+                            <img class="img-thumbnail" src="{{ im.url }}" alt="Card image cap">
+                        {% endthumbnail %}
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <b>Name: </b>{{ image.title| truncatewords:30 | linebreaks }}</p>
+                                <a href="{{ image.get_absolute_url }}" class="btn btn-primary">See detail &rarr;</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% include "article/pagination.html" with current_page=images %}
+            </div>
         </div>
+        <!-- /.row -->
     </div>
-{% endfor %}
+    <!-- /.container -->
+
+{% endblock %}

@@ -1,24 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title> Home</title>
     <!--meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="" />
+    <meta name="keywords" content=""/>
     <script>
-      addEventListener("load", function () {
-      	setTimeout(hideURLbar, 0);
-      }, false);
-      
-      function hideURLbar() {
-      	window.scrollTo(0, 1);
-      }
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!--//meta tags ends here-->
     <!--booststrap-->
-    <link  href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
     <!--//booststrap end-->
     <!-- font-awesome icons -->
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
@@ -28,198 +28,213 @@
     <!--//stylesheets-->
     <link href="http://fonts.googleapis.com/css?family=Oswald:400,500,600,700" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-  </head>
-  <body>
-    <div class="main-top" id="home">
-      <!-- header -->
-      <div class="headder-top">
+</head>
+<body>
+<div class="main-top" id="home">
+    <!-- header -->
+    <div class="headder-top">
         <!-- nav -->
-        <nav >
-          <div id="logo">
-            <h1><a href="index.html">UBCO CRN</a></h1>
-          </div>
-          <label for="drop" class="toggle">Menu</label>
-          <input type="checkbox" id="drop">
-          <ul class="menu mt-2">
-            <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
-            <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="{% url 'article:article_list' %}">Articles</a></li>
-            <li><a href="service.html">People</a></li>
-            <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
-              <!-- First Tier Drop Down -->
-              <label for="drop-2" class="toggle toogle-2">Models <span class="fa fa-angle-down" aria-hidden="true"></span>
-              </label>
-              <a href="#">Models <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-              <input type="checkbox" id="drop-2">
-              <ul>
-                <li><a href="gallery.html" class="drop-text">Chatbot For Fun</a></li>
-                <li><a href="menu.html" class="drop-text">ML</a></li>
-                <li><a href="recipe.html" class="drop-text">DP</a></li>
-              </ul>
-            </li>
-              {% if request.user.is_authenticated %}
-                 <li>
-                 <a href="{% url "logout" %}">Hello {{ request.user.first_name }},You can Logout Here</a>
-                 </li>
-              {% else %}
-                  <li><a href="{% url "login" %}">Log-in</a></li>
-                  <li><a href="{% url "register" %}">Register</a></li>
-              {% endif %}
-          </ul>
+        <nav>
+            <div id="logo">
+                <h1><a href="index.html">UBCO CRN</a></h1>
+            </div>
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu mt-2">
+                <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
+                <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="{% url 'article:article_list' %}">Articles</a></li>
+                <li><a href="{% url 'user_list' %}">People</a></li>
+                <li><a href="{% url 'images:list' %}">Images</a></li>
+                <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                    <!-- First Tier Drop Down -->
+                    <label for="drop-2" class="toggle toogle-2">Models <span class="fa fa-angle-down"
+                                                                             aria-hidden="true"></span>
+                    </label>
+                    <a href="#">Models <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                    <input type="checkbox" id="drop-2">
+                    <ul>
+                        <li><a href="gallery.html" class="drop-text">Chatbot For Fun</a></li>
+                        <li><a href="menu.html" class="drop-text">ML</a></li>
+                        <li><a href="recipe.html" class="drop-text">DP</a></li>
+                    </ul>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url "user_dashboard" %}">{{ request.user.first_name }},Dashboard here</a>
+                        <a href="{% url "logout" %}">Logout Here</a>
+                    </li>
+                {% else %}
+                    <li><a href="{% url "login" %}">Log-in</a></li>
+                    <li><a href="{% url "register" %}">Register</a></li>
+                {% endif %}
+            </ul>
         </nav>
         <!-- //nav -->
-      </div>
-      <!-- //header -->
-      <!-- banner -->
-      <div class="main-banner">
-        <div class="container-fluid">
-          <div class="style-banner ">
-            <h4>CRN OKANAGAN</h4>
-            <div class="two-demo-button mt-md-4 mt-3">
-              <p> CRN-Okanagan has a wide array of equipment to support all research activities in the field of composites manufacturing, advanced statistical methods, materials engineering and mechanical engineering. </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <!-- //banner -->
-    <!-- service -->
-    <section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service">
-      <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+    <!-- //header -->
+    <!-- banner -->
+    <div class="main-banner">
+        <div class="container-fluid">
+            <div class="style-banner ">
+                <h4>CRN OKANAGAN</h4>
+                <div class="two-demo-button mt-md-4 mt-3">
+                    <p> CRN-Okanagan has a wide array of equipment to support all research activities in the field of
+                        composites manufacturing, advanced statistical methods, materials engineering and mechanical
+                        engineering. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //banner -->
+<!-- service -->
+<section class="service py-lg-4 py-md-3 py-sm-3 py-3" id="service">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
         <h6 class="text-center top-title mb-2">Opportunities Here</h6>
         <h3 class="text-center title mb-3">Our Researches</h3>
         <div class="title-wls-text text-center pt-lg-3 pt-2 mb-lg-5 mb-md-4 mb-sm-4 mb-3">
-          <p>CRN – Okanagan is a vibrant, diverse and highly active research laboratory, serving local, national and global industries in pursuit of the advancement of composite materials and processes. Research performed has led to many successful graduate research projects and thesis defences by graduate students, as well as practical solutions to company problems, in the form of design or troubleshooting, where applicable. </p>
+            <p>CRN – Okanagan is a vibrant, diverse and highly active research laboratory, serving local, national and
+                global industries in pursuit of the advancement of composite materials and processes. Research performed
+                has led to many successful graduate research projects and thesis defences by graduate students, as well
+                as practical solutions to company problems, in the form of design or troubleshooting, where
+                applicable. </p>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6 service-grid-wthree">
-            <div class="ser-fashion-grid">
-              <div class="about-icon mb-md-4 mb-3">
-                <span class="fa fa-laptop" aria-hidden="true"></span>
-              </div>
-              <div class="ser-sevice-grid">
-                <h4 class="pb-3">Design & Manufacturing </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna</p>
-              </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 service-grid-wthree">
+                <div class="ser-fashion-grid">
+                    <div class="about-icon mb-md-4 mb-3">
+                        <span class="fa fa-laptop" aria-hidden="true"></span>
+                    </div>
+                    <div class="ser-sevice-grid">
+                        <h4 class="pb-3">Design & Manufacturing </h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 service-grid-wthree ">
-            <div class="ser-fashion-grid">
-              <div class="about-icon mb-md-4 mb-3">
-                <span class="fa fa-comments" aria-hidden="true"></span>
-              </div>
-              <div class="ser-sevice-grid">
-                <h4 class="pb-3">Industrial Collaborative R&D</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna</p>
-              </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 service-grid-wthree ">
+                <div class="ser-fashion-grid">
+                    <div class="about-icon mb-md-4 mb-3">
+                        <span class="fa fa-comments" aria-hidden="true"></span>
+                    </div>
+                    <div class="ser-sevice-grid">
+                        <h4 class="pb-3">Industrial Collaborative R&D</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6 service-grid-wthree">
-            <div class="ser-fashion-grid">
-              <div class="about-icon mb-md-4 mb-3">
-                <span class="fa fa-desktop" aria-hidden="true"></span>
-              </div>
-              <div class="ser-sevice-grid">
-                <h4 class="pb-3">Intelligent Manufacturing and Industry 4.0</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna</p>
-              </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 service-grid-wthree">
+                <div class="ser-fashion-grid">
+                    <div class="about-icon mb-md-4 mb-3">
+                        <span class="fa fa-desktop" aria-hidden="true"></span>
+                    </div>
+                    <div class="ser-sevice-grid">
+                        <h4 class="pb-3">Intelligent Manufacturing and Industry 4.0</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna</p>
+                    </div>
+                </div>
             </div>
-          </div>
-       
+
         </div>
-      </div>
-    </section>
-    <!--//service -->
-    <!-- prices  -->
-    <section class="price py-lg-4 py-md-3 py-sm-3 py-3" id="price">
-      <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+    </div>
+</section>
+<!--//service -->
+<!-- prices  -->
+<section class="price py-lg-4 py-md-3 py-sm-3 py-3" id="price">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
         <h6 class="text-center top-title mb-2">About Us</h6>
         <h3 class="text-center title mb-3">Recent Posts</h3>
         <div class="title-wls-text text-center pt-lg-3 pt-2 mb-lg-5 mb-md-4 mb-sm-4 mb-3">
-          <p>Record Our Latest Posts</p>
+            <p>Record Our Latest Posts</p>
         </div>
-<!--        here should be three recent article divs -->
-<!--       change here -->
+        <!--        here should be three recent article divs -->
+        <!--       change here -->
 
         <div class="row w3pvt-service-grids-all text-center">
             {% for articel in articles %}
-          <div class="col-lg-4 col-md-4 table-tab-table">
-            <div class="table-wthree-price">
-              <div class="table-sub-title text-center">
-                <h4>Articles</h4>
-                <h5 class="pt-lg-4 pt-md-4 pt-3">{{ articel.title }}</h5>
-                <h6 class="pt-3">{{ articel.publish_time }} by {{ article.author }}</h6>
-                <p class="pt-lg-5 pt-md-4 pt-3"> {{ article.body | truncatewords:30 | linebreaks }}</p>
-              </div>
-              <div class="view-buttn text-center pt-lg-4 pt-3">
-                <a href="{{ articel.get_absolute_url }}" class="btn ">Read Here</a>
-              </div>
-            </div>
-          </div>
+                <div class="col-lg-4 col-md-4 table-tab-table">
+                    <div class="table-wthree-price">
+                        <div class="table-sub-title text-center">
+                            <h4>Articles</h4>
+                            <h5 class="pt-lg-4 pt-md-4 pt-3">{{ articel.title }}</h5>
+                            <h6 class="pt-3">{{ articel.publish_time }} by {{ article.author }}</h6>
+                            <p class="pt-lg-5 pt-md-4 pt-3"> {{ article.body | truncatewords:30 | linebreaks }}</p>
+                        </div>
+                        <div class="view-buttn text-center pt-lg-4 pt-3">
+                            <a href="{{ articel.get_absolute_url }}" class="btn ">Read Here</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
 
-      </div>
-    </section>
-    <!--//prices -->
-    <!-- Clients  -->
-    
-    <!-- footer -->
-    <footer class="py-lg-3 py-md-2 py-sm-3 py-2">
-      <div class="container py-lg-4 py-md-4 py-sm-3 py-3">
+    </div>
+</section>
+<!--//prices -->
+<!-- Clients  -->
+
+<!-- footer -->
+<footer class="py-lg-3 py-md-2 py-sm-3 py-2">
+    <div class="container py-lg-4 py-md-4 py-sm-3 py-3">
         <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
-            <h2><a href="index.html">CRN</a></h2>
-            <p class="pt-lg-4 pt-3">Best Lab
-            </p>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
-            <h4>Our Timings</h4>
-            <div class="mt-3 footer-hours-list">
-              <ul>
-                <li class="d-flex">Monday-Friday All day</li>
-                <li class="d-flex">Saturday All day</li>
-              </ul>
+            <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
+                <h2><a href="index.html">CRN</a></h2>
+                <p class="pt-lg-4 pt-3">Best Lab
+                </p>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
-            <h4>Our Address</h4>
-            <div class="mt-3 footer-top">
-              <p><span>Address</span> :EME 1212 - 1137 Alumni Ave Kelowna, BC Canada V1V 1V7.</p>
-              <p class="pt-2"> <span> Phone</span> :1 250 807 9652</p>
-              <p class="pt-2"><span>Email</span>   :<a href="mailto:info@example.com">info@example1.com</a> 
-              </p>
+            <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
+                <h4>Our Timings</h4>
+                <div class="mt-3 footer-hours-list">
+                    <ul>
+                        <li class="d-flex">Monday-Friday All day</li>
+                        <li class="d-flex">Saturday All day</li>
+                    </ul>
+                </div>
             </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
+                <h4>Our Address</h4>
+                <div class="mt-3 footer-top">
+                    <p><span>Address</span> :EME 1212 - 1137 Alumni Ave Kelowna, BC Canada V1V 1V7.</p>
+                    <p class="pt-2"><span> Phone</span> :1 250 807 9652</p>
+                    <p class="pt-2"><span>Email</span> :<a href="mailto:info@example.com">info@example1.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+
         </div>
-          
-        </div>
-      </div>
-    </footer>
-    <!--//footer -->
-    <!-- footer-copy-write -->
-    <div class="footer-copy-write py-lg-3 py-md-2 py-sm-3 py-2">
-      <div class="container pb-lg-3 pb-2">
+    </div>
+</footer>
+<!--//footer -->
+<!-- footer-copy-write -->
+<div class="footer-copy-write py-lg-3 py-md-2 py-sm-3 py-2">
+    <div class="container pb-lg-3 pb-2">
         <div class="bottem-txt-footer text-center pt-md-4 pt-3">
-          <p> 
-            Copyright &copy; 2019.UBCO CRN All rights reserved.
-          </p>
+            <p>
+                Copyright &copy; 2019.UBCO CRN All rights reserved.
+            </p>
         </div>
         <!-- move icon -->
         <div class="text-center">
-          <a href="#home" class="move-top text-center mt-3"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+            <a href="#home" class="move-top text-center mt-3"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
         </div>
         <!--//move icon -->
-      </div>
     </div>
-    <!--//footer-copy-write -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+</div>
+<!--//footer-copy-write -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
 </html>

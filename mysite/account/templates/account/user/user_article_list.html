@@ -1,0 +1,76 @@
+{% extends 'base2.html' %}
+{% load article_tags %}
+
+{% block title %} Article List {% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <h1 class="my-4">Articles</h1>
+                <!-- Blog Post -->
+                {% for article in articles %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ article.title }}</h2>
+                            <p class="card-text">
+                                <b>Content: </b>{{ article.article_content | truncatewords:30 | linebreaks }}</p>
+                            <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <p>
+                                Tags:
+                                {% for tag in article.tags.all %}
+                                    <a href="{% url "article:article_list_by_tag" tag.slug %}">
+                                        {{ tag.name }}
+                                    </a>
+                                    {% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted on {{ article.publish_time }} by {{ article.author }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% include "article/pagination.html" with current_page=articles %}
+            </div>
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                {#                most popular articles based on comments#}
+                <div class="card my-4">
+                    <h5 class="card-header">We have written {% total_articles %} articles so far</h5>
+                    <br>
+                    <h5 class="card-header">Most Popular Articles</h5>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            {% show_most_popular_articles as most_comment_articles %}
+                            {% for article in most_comment_articles %}
+                                <li>
+                                    <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                                </li>
+                                <p></p>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Latest Articles</h5>
+                    <div class="card-body">
+                        {% show_latest_articles %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+{% endblock %}
+
+

@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns=[
     # path('login/',views.user_login,name='login'),
     path('',views.user_dashboard,name='user_dashboard'),
+    path('user_article_list/',views.user_article_list,name='user_article_list'),
     path('login/',auth_views.LoginView.as_view(),name='login'),
     path('logout/',auth_views.LogoutView.as_view(),name='logout'),
     # the reason why templates of below two views donot need .is_authenticated is that these two views have been decorated by login_required
