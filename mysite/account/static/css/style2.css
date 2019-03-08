@@ -432,6 +432,7 @@ a.reqe-button {
     padding: 15px 0;
     text-align: center;
     width: 100%;
+    z-index: 99999;
   }
   /* Change menu item's width to 100% */
   nav ul li {

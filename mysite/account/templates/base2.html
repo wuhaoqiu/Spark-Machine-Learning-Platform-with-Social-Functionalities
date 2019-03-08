@@ -27,11 +27,11 @@
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
     <!-- //font-awesome icons -->
     <!--stylesheets-->
-    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' media="all">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static "css/style2.css" %}" rel='stylesheet' type='text/css' media="all">
     <!--//stylesheets-->
     <link href="http://fonts.googleapis.com/css?family=Oswald:400,500,600,700" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
 
 </head>
 <body>
@@ -39,15 +39,13 @@
 <div class="header-outs inner_page-banner " id="home">
     <div class="headder-top">
         <!-- nav -->
-        <nav class="navbar navbar-expand-lg" style="min-width: 300px">
+        <nav class="navbar">
             <div class="navbar-brand">
                 <h2><a style="color: white;" href="#">UBCO CRN</a></h2>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="menu mt-2 navbar-nav mr-auto">
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+                <ul class="menu mt-2">
                     <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
                     <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="{% url 'article:article_list' %}">Articles</a>
                     </li>
@@ -76,7 +74,6 @@
                         <li><a href="{% url "register" %}">Register</a></li>
                     {% endif %}
                 </ul>
-            </div>
         </nav>
         <!-- //nav -->
     </div>
