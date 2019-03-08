@@ -13,15 +13,17 @@
     <div class="container">
         <br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
                 <div class="card mb-4" style="max-width: 200px; margin: 0 auto">
                     <div class="card-body">
-                        <p>Profile Image</p>
+                        <p style="color: blue">Profile Image</p>
                     </div>
                     {% thumbnail request.user.profile.photo "200x200" crop="100%" as im %}
                         <img class="img-thumbnail" src="{{ im.url }}" alt="Card image cap">
                     {% endthumbnail %}
                 </div>
+            </div>
+            <div class="col-md-9">
                 <div class="list-group ">
                     <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
                     <a href="{% url 'edit' %}" class="list-group-item list-group-item-action">Edit your profile</a>
@@ -29,10 +31,12 @@
                         password</a>
                     <a href="{% url 'user_article_list' %}" class="list-group-item list-group-item-action">Your
                         articles</a>
-                    <a href="{% url 'images:create' %}" class="list-group-item list-group-item-action">Create an
+                    <a href="{% url 'images:create' %}" class="list-group-item list-group-item-action">Upload an
                         Image</a>
-                    <a href="#" class="list-group-item list-group-item-action">People you following</a>
-                    <a href="#" class="list-group-item list-group-item-action">Images you like</a>
+                    <a href="{% url 'user_created_images' %}" class="list-group-item list-group-item-action">Images you
+                        uploaded</a>
+                    <a href="{% url 'user_liked_images' %}" class="list-group-item list-group-item-action">Images you
+                        liked</a>
                     <a href="#" class="list-group-item list-group-item-action">Category</a>
                     <a href="#" class="list-group-item list-group-item-action">New</a>
                     <a href="#" class="list-group-item list-group-item-action">Comments</a>

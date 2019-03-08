@@ -1,13 +1,16 @@
 #author:Haoqiu Wu Time 19.2.27
 from django.urls import path
-from . import views
+from .import views
 from django.contrib.auth import views as auth_views
+from images.views import user_created_images,user_liked_images
 
 
 urlpatterns=[
     # path('login/',views.user_login,name='login'),
     path('',views.user_dashboard,name='user_dashboard'),
     path('user_article_list/',views.user_article_list,name='user_article_list'),
+    path('user_liked_images/',user_liked_images,name='user_liked_images'),
+    path('user_created_images/',user_created_images,name='user_created_images'),
     path('login/',auth_views.LoginView.as_view(),name='login'),
     path('logout/',auth_views.LogoutView.as_view(),name='logout'),
     # the reason why templates of below two views donot need .is_authenticated is that these two views have been decorated by login_required

@@ -1,11 +1,11 @@
 {% extends "base2.html" %}
 {% load thumbnail %}
-{% block title %}Image Lists{% endblock %}
+{% block title %}User Liked Images{% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
             <!-- Blog Entries Column -->
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <h1 class="my-4">Images</h1>
                 <!-- Blog Post -->
                 <div class="card-deck">
@@ -23,19 +23,6 @@
                     {% endfor %}
                 </div>
                 {% include "article/pagination.html" with current_page=images %}
-            </div>
-            <div class="col-md-2">
-                <h1>Images ranking</h1>
-                <ol>
-                    {% for image in most_viewed %}
-                        <li>
-                            <a href="{{ image.get_absolute_url }}">
-                                {{ image.title }}
-                            </a>
-                        </li>
-                    {% empty %}
-                    {% endfor %}
-                </ol>
             </div>
         </div>
         <!-- /.row -->

@@ -24,7 +24,7 @@ def article_list(request, tag_slug=None):
         all_articles=all_articles.filter(tags__in=[tag])
 
     # each page only display 6 posts
-    paginator=Paginator(all_articles,6)
+    paginator=Paginator(all_articles,3)
     page=request.GET.get('page')
     try:
         one_page_articles=paginator.page(page)

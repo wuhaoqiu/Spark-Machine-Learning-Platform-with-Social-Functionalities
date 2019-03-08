@@ -1,8 +1,11 @@
 {% extends "base2.html" %}
+{% load crispy_forms_tags %}
+
 {#the reason why put login.html in this file is because that this is where django auth view expects to find templates#}
 {% block title %}Log-in{% endblock %}
 {% block content %}
     <div class="container price col-lg-12">
+    <div class="col-md-6 offset-3">
         <form action="{% url 'login' %}" method="post" class="form-horizontal" role="form">
             <h2 class="text-center" style="color: white">Log in</h2>
             {% if form.errors %}
@@ -15,12 +18,13 @@
                     here </a></p>
                 <p class="text-center" style="color: white">you can either use you email or your username</p>
             {% endif %}
-            {% for field in form %}
-                <div class="form-group">
-                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>
-                    <p class="text-center" style="color: white">{{ field }}</p>
-                </div>
-            {% endfor %}
+{#            {% for field in form %}#}
+{#                <div class="form-group">#}
+{#                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>#}
+{#                    <p class="text-center" style="color: white">{{ field }}</p>#}
+{#                </div>#}
+{#            {% endfor %}#}
+        {{ form | crispy }}
             <input type="hidden" name="next" value="{{ next }}"/>
             {% csrf_token %}
             <p class="text-center">
@@ -29,6 +33,7 @@
         </form> <!-- /form -->
         <p class="text-center" style="color: white"><a href="{% url 'password_reset' %}">Forget your password? Click</a></p>
         <br>
+    </div>
     </div> <!-- ./container -->
 
 {% endblock %}

@@ -19,7 +19,7 @@ r=redis.StrictRedis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=setti
 @login_required
 def image_list(request):
     images = Image.objects.all()
-    paginator=Paginator(images,6)
+    paginator=Paginator(images,4)
     page=request.GET.get('page')
     try:
         one_page_images=paginator.page(page)
@@ -28,7 +28,49 @@ def image_list(request):
     except EmptyPage:
         #retrieve the last page content if page number beyond range
         one_page_images=paginator.page(paginator.num_pages)
-    return render(request,'images/image/list_ajax.html',{'images': one_page_images})
+
+    try:
+        # retrieve all elements in the ranking set called image_ranking from redis, slice so that only need first 10
+        image_ranking = r.zrange('image_ranking', 0, -1, desc=True)[:10]
+        # retrieve theri id number and store into a list called image_ranking_ids
+        image_ranking_ids = [int(id) for id in image_ranking]
+        # retrieve true image objects from MySQL
+        most_viewed = list(Image.objects.filter(id__in=image_ranking_ids))
+        # 根据该image在imagerankingids里的位置来排序， python list.index(object)可以返回该object在该list中的位置
+        most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
+    except Exception:
+        most_viewed=None
+
+    return render(request,'images/image/list_ajax.html',{'images': one_page_images,
+                                                         'most_viewed':most_viewed})
+
+@login_required
+def user_liked_images(request):
+    images=request.user.images_like.all()
+    paginator = Paginator(images, 6)
+    page = request.GET.get('page')
+    try:
+        one_page_images = paginator.page(page)
+    except PageNotAnInteger:
+        one_page_images = paginator.page(1)
+    except EmptyPage:
+        # retrieve the last page content if page number beyond range
+        one_page_images = paginator.page(paginator.num_pages)
+    return render(request,'images/user/user_liked_images.html',{'images': one_page_images})
+
+@login_required
+def user_created_images(request):
+    images=Image.objects.filter(user=request.user)
+    paginator = Paginator(images, 6)
+    page = request.GET.get('page')
+    try:
+        one_page_images = paginator.page(page)
+    except PageNotAnInteger:
+        one_page_images = paginator.page(1)
+    except EmptyPage:
+        # retrieve the last page content if page number beyond range
+        one_page_images = paginator.page(paginator.num_pages)
+    return render(request,'images/user/user_created_images.html',{'images': one_page_images})
 
 @login_required
 def image_create(request):
@@ -92,18 +134,3 @@ def image_like(request):
         except Exception:
             JsonResponse({'status': 'error'})
     return JsonResponse({'status':'error'})
-
-@login_required
-def image_ranking(request):
-    # retrieve all elements in the ranking set called image_ranking from redis, slice so that only need first 10
-    image_ranking = r.zrange('image_ranking', 0, -1,desc=True)[:10]
-    # retrieve theri id number and store into a list called image_ranking_ids
-    image_ranking_ids = [int(id) for id in image_ranking]
-    # retrieve true image objects from MySQL
-    most_viewed = list(Image.objects.filter(id__in=image_ranking_ids))
-    # 根据该image在imagerankingids里的位置来排序， python list.index(object)可以返回该object在该list中的位置
-    most_viewed.sort(key=lambda x:image_ranking_ids.index(x.id))
-    return render(request,
-    'images/image/ranking.html',
-    {'section': 'images',
-    'most_viewed': most_viewed})
