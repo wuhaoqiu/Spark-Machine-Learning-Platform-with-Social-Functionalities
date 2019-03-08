@@ -10,27 +10,86 @@
     <link rel="stylesheet" href="{% static "css/blog.css" %}">
 </head>
 <body>
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
 
-    <div id="sidebar">
-        <h2>My blog</h2>
-            <p>This is my blog. I have writtedn {% total_articles %} articles so far</p>
+<div id="sidebar">
+    <h2>My blog</h2>
+    <p>This is my blog. I have writtedn {% total_articles %} articles so far</p>
 
-        <h3>Latest articles</h3>
-{#        pass 3 as a paramter to customized template tag #}
-        {% show_latest_articles %}
+    <h3>Latest articles</h3>
+    {#        pass 3 as a paramter to customized template tag #}
+    {% show_latest_articles %}
 
-        <h3>Most popular articles</h3>
-        {% show_most_popular_articles as most_comment_articles %}
-        {% for article in most_comment_articles %}
+    <h3>Most popular articles</h3>
+    {% show_most_popular_articles as most_comment_articles %}
+    {% for article in most_comment_articles %}
         <li>
             <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
         </li>
-        {% endfor %}
+    {% endfor %}
 
-    </div>
+</div>
 </body>
 </html>
+
+
+<div class="container portfolio">
+    <div class="bio-info">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                    <div>
+                        <span class="count">
+                        <span class="total">{{ total_likes }}</span>
+                        like{{ total_likes|pluralize }}
+                        </span>
+                        <span class="count">
+                            {{ total_views }} view{{ total_views|pluralize }}
+                        </span>
+                        <button type="button" class="btn btn-success">
+                            <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">
+                        {% if request.user not in users_like %}
+                            Like
+                        {% else %}
+                            Unlike
+                        {% endif %}
+                            </a>
+                        </button>
+                    </div>
+                        <div class="bio-image">
+                            {% load thumbnail %}
+                            {% thumbnail image.image "300" as im %}
+                                <a href="{{ image.image.url }}">
+                                    <img src="{{ im.url }}" class="image-detail">
+                                </a>
+                            {% endthumbnail %}
+                            {% with total_likes=image.users_like.count users_like=image.users_like.all %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="col-md-4">
+                        <div class="bio-content">
+                            <h1>{{ image.title }}</h1>
+                            <h6>{{ image.description|linebreaks }}</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-md4">
+                        {% for user in image.users_like.all %}
+                <div>
+                    <img src="{{ user.profile.photo.url }}">
+                    <p>{{ user.first_name }}</p>
+                </div>
+                         {% empty %}
+                            Nobody likes this image yet.
+                        {% endfor %}
+                    </div>
+        </div>
+    </div>
+</div>
+{% endwith %}

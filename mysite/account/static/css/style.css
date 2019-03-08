@@ -743,6 +743,18 @@ span.time {
 
 /*--//clients-- */
 
+/*count*/
+
+.count {
+    color:#aaa;
+    border:3px solid #bbb;
+    border-radius:26px;
+    padding:10px 20px;
+    margin:20px 10px 0;
+}
+
+/*end of count*/
+
 
 /*--countr-- */
 
@@ -1507,6 +1519,5 @@ a.move-top {
     padding: 2em 1.5em;
   }
 }
-
 
 /*--//responsive--*/

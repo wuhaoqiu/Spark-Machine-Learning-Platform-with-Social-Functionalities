@@ -1,18 +1,12 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {# sorl-thumnail package have more functions, see https://sorl-thumbnail.readthedocs.io/en/latest/#}
 {% block title %}{{ image.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ image.title }}</h1>
-{#    define a thumnai wih 300 pixels #}
-    {% load thumbnail %}
-    {% thumbnail image.image "300" as im %}
-        <a href="{{ image.image.url }}">
-            <img src="{{ im.url }}" class="image-detail">
-        </a>
-    {% endthumbnail %}
-    {% with total_likes=image.users_like.count users_like=image.users_like.all %}
-        <div class="image-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h1>How popular?</h1>
                 <div>
                     <span class="count">
                         <span class="total">{{ total_likes }}</span>
@@ -21,62 +15,87 @@
                     <span class="count">
                         {{ total_views }} view{{ total_views|pluralize }}
                     </span>
-{#                    <span class="count">#}
-{#                        <span class="total">{{ total_views }}</span>#}
-{#                        view{{ total_views|pluralize }}#}
-{#                    </span>#}
-{#                use data-* global attribute for storing customized user data#}
-                    <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">
+                </div>
+
+            </div>
+            <div class="col-md-5">
+                <h1>{{ image.title }}</h1>
+                {% load thumbnail %}
+                {% thumbnail image.image "300" as im %}
+                    <a href="{{ image.image.url }}">
+                        <img src="{{ im.url }}" class="image-detail">
+                    </a>
+                {% endthumbnail %}
+                {% with total_likes=image.users_like.count users_like=image.users_like.all %}
+                    <a href="#" data-id="{{ image.id }}"
+                       data-action="{% if request.user in users_like %}un{% endif %}like"
+                       class="like button">
                         {% if request.user not in users_like %}
                             Like
                         {% else %}
                             Unlike
                         {% endif %}
                     </a>
-                </div>
-            {{ image.description|linebreaks }}
-        </div>
+                    </div>
 
-        <div class="image-likes">
-            {% for user in image.users_like.all %}
-                <div>
-                    <img src="{{ user.profile.photo.url }}">
-                    <p>{{ user.first_name }}</p>
-                </div>
-            {% empty %}
-                Nobody likes this image yet.
-            {% endfor %}
+                    <div class="col-md-2">
+                        <h1>description</h1>
+                        <div>
+                            <p>
+                                {{ image.description|linebreaks }}
+                            </p>
+                        </div>
+                    </div>
+
+                {% endwith %}
         </div>
-    {% endwith %}
+        <div class="row">
+            <div class="col-md-12">
+                <h1>People who like this</h1>
+                <div class="image-likes">
+                    {% for user in image.users_like.all %}
+                        <div>
+                            <img src="{{ user.profile.photo.url }}">
+                            <p>{{ user.first_name }}</p>
+                        </div>
+                    {% empty %}
+                        Nobody likes this image yet.
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
 
 {% block domready %}
-{#    find all <a> with clss <like>, and set a click event handler function for them #}
+    {#    find all <a> with clss <like>, and set a click event handler function for them #}
     $('a.like').click(function(e){
-{#    avoid default behabior of <a> that may redirect us to other pages#}
-        e.preventDefault();
-{#    operate a post AJAX request and using Django url as a parameter #}
-        $.post('{% url "images:like" %}',
-            {
-                id: $(this).data('id'),
-                action: $(this).data('action')
-            },
-{#    this function is a callback function, which means that eachtime when we send a AJAX request, this function will execute when receiving HTTP response #}
-{#    after sending id and action to /like page, its corresponding view functon(views.image_like()) will return a json data containing 'status' variables#}
-            function(data){
-                if (data['status'] == 'ok')
-                {
-                    var previous_action = $('a.like').data('action');
+    {#    avoid default behabior of <a> that may redirect us to other pages#}
+    e.preventDefault();
+    {#    operate a post AJAX request and using Django url as a parameter #}
+    $.post('{% url "images:like" %}',
+    {
+    id: $(this).data('id'),
+    action: $(this).data('action')
+    },
+    {#    this function is a callback function, which means that eachtime when we send a AJAX request, this function will execute when receiving HTTP response #}
+    {#    after sending id and action to /like page, its corresponding view functon(views.image_like()) will return a json data containing 'status' variables#}
+    function(data){
+    if (data['status'] == 'ok')
+    {
+    var previous_action = $('a.like').data('action');
 
-                    // toggle data-action
-                    $('a.like').data('action', previous_action == 'like' ? 'unlike' : 'like');
-                    // toggle link text
-                    $('a.like').text(previous_action == 'like' ? 'Unlike' : 'Like');
+    // toggle data-action
+    $('a.like').data('action', previous_action == 'like' ? 'unlike' : 'like');
+    // toggle link text
+    $('a.like').text(previous_action == 'like' ? 'Unlike' : 'Like');
 
-                    // update total likes
-                    var previous_likes = parseInt($('span.count .total').text());
-                    $('span.count .total').text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
-                }
-        });
+    // update total likes
+    var previous_likes = parseInt($('span.count .total').text());
+    $('span.count .total').text(previous_action == 'like' ? previous_likes + 1 : previous_likes - 1);
+    }
+    });
     });
 {% endblock %}
