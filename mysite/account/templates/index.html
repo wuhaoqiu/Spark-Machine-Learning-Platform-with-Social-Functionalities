@@ -36,10 +36,8 @@
         <!-- nav -->
         <nav>
             <div id="logo">
-                <h1><a href="index.html">UBCO CRN</a></h1>
+                <h1><a href="#">UBCO CRN</a></h1>
             </div>
-            <label for="drop" class="toggle">Menu</label>
-            <input type="checkbox" id="drop">
             <ul class="menu mt-2">
                 <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
                 <li class="mx-lg-3 mx-md-2 my-md-0 my-1"><a href="{% url 'article:article_list' %}">Articles</a></li>
@@ -53,9 +51,9 @@
                     <a href="#">Models <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                     <input type="checkbox" id="drop-2">
                     <ul>
-                        <li><a href="gallery.html" class="drop-text">Chatbot For Fun</a></li>
-                        <li><a href="menu.html" class="drop-text">ML</a></li>
-                        <li><a href="recipe.html" class="drop-text">DP</a></li>
+                        <li><a href="#" class="drop-text">Chatbot For Fun</a></li>
+                        <li><a href="#" class="drop-text">ML</a></li>
+                        <li><a href="#" class="drop-text">DP</a></li>
                     </ul>
                 </li>
                 {% if request.user.is_authenticated %}

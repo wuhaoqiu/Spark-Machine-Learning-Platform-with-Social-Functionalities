@@ -55,6 +55,7 @@ def image_create(request):
 
 def image_detail(request,id,slug):
     image=get_object_or_404(Image,id=id,slug=slug)
+    total_likes=image.total_likes
     # increment view times of an image by one
     # this method can increment the value of given key by one, if this key doesnt exist, then create one
     # using : to separate is the naming convention of Redis, object_type:id:object's attribute
@@ -65,7 +66,8 @@ def image_detail(request,id,slug):
     r.zincrby('image_ranking',image.id,1)
     return render(request,'images/image/detail.html',{'section':'images',
                                                       'image':image,
-                                                      'total_views':total_views})
+                                                      'total_views':total_views,
+                                                      'total_likes':total_likes})
 
 
 # only allow post for this view, if method is not post, return a 405 httpresponsenotallowed object

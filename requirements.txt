@@ -7,3 +7,4 @@ pillow==5.1.0
 social-auth-app-django==2.1.0
 sorl-thumbnail==12.4.1
 redis==2.10.6
+django-crispy-forms

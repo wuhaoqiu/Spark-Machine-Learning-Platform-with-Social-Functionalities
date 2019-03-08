@@ -30,7 +30,7 @@ class CommentForm(forms.ModelForm):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model=Article
-        fields=('title','article_content','label_in_url','tags')
+        fields=('tags','title','article_content','label_in_url',)
 
 class SearchForm(SearchForm):
     def no_query_found(self):

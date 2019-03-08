@@ -1,6 +1,7 @@
 {% extends 'base2.html' %}
 {% load article_tags %}
-
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
 {% block title %} Article List {% endblock %}
 
 {% block content %}
@@ -32,12 +33,13 @@
                                 <div class="modal-body mx-5">
                                     <form action="" method="post">
                                         {#                                        {{ article_form.as_p }}#}
-                                        {% for field in article_form %}
-                                            <div class="form-group">
-                                                <p class="text-center"><label>{{ field.label_tag }}</label></p>
-                                                <p class="text-center">{{ field }}</p>
-                                            </div>
-                                        {% endfor %}
+{#                                        {% for field in article_form %}#}
+{#                                            <div class="form-group">#}
+{#                                                <p class="text-center"><label>{{ field.label_tag }}</label></p>#}
+{#                                                <p class="text-center">{{ field }}</p>#}
+{#                                            </div>#}
+{#                                        {% endfor %}#}
+                                        {{ article_form | crispy }}
                                         <p class="text-center">
                                             <button class="btn btn-success" type="submit">
                                                 {% csrf_token %}

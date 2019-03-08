@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'sorl.thumbnail',#used to display thumnail of image, need to download package at first
     # 'social_django' , # this app package helps us to allow users to login using their social services, after adding this,
                     # remember to migrate to update project, more can see  https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supported-backends.
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
