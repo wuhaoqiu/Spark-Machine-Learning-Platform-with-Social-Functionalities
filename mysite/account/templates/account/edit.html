@@ -14,13 +14,14 @@
 {#                    <p class="text-center" style="color: white">{{ field }}</p>#}
 {#                </div>#}
 {#            {% endfor %}#}
-        {{ user_form | crispy }}
+            {{ user_form | crispy }}
 {#           {% for field in profile_form %}#}
 {#                <div class="form-group">#}
 {#                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>#}
 {#                    <p class="text-center" style="color: white">{{ field }}</p>#}
 {#                </div>#}
 {#            {% endfor %}#}
+            <p><b>Select clear checkbox to clear profile photo</b></p>
             {{ profile_form | crispy }}
             {% csrf_token %}
             <p class="text-center"><button type="submit" class="btn btn-primary" style="max-width: 300px">Save Changes</button></p>

@@ -86,6 +86,9 @@ def edit(request):
             profile_form.save()
             # use django message framework to display messages to users's actions
             messages.success(request,'profile and user information updated successfully')
+            from django.http.response import HttpResponseRedirect
+            from django.urls import reverse
+            return HttpResponseRedirect(reverse('edit'))
         else:
             messages.error(request,'updated failed')
     else:
