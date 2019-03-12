@@ -65,7 +65,9 @@ def register(request):
                 new_user.save()
                 # after creating a new user, create a profile corresponding to it
                 Profile.objects.create(user=new_user)
-                return render(request,'account/register_done.html',{'new_user': new_user})
+                from django.http import HttpResponseRedirect
+                from django.urls import reverse
+                return HttpResponseRedirect(reverse('login'))
     else:
         user_form = UserRegistrationForm()
     #     if method is not post or input is not valid, render register page again

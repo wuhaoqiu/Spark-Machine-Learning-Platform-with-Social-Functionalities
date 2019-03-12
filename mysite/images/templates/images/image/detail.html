@@ -58,8 +58,12 @@
                 <div class="image-likes">
                     {% for user in image.users_like.all %}
                         <div>
+                        {% if user.profile.photo %}
                             <img src="{{ user.profile.photo.url }}">
                             <p>{{ user.first_name }}</p>
+                        {% else %}
+                            <p>{{ user.first_name }}</p>
+                        {% endif %}
                         </div>
                     {% empty %}
                         Nobody likes this image yet.

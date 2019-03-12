@@ -111,8 +111,8 @@ def image_detail(request,id,slug):
         # then each time this view is called, increment view time by 1,also, this set is globally
         r.zincrby('image_ranking',image.id,1)
     except Exception:
-        pass
-    return render(request,'images/image/detail.html',{'section':'images',
+        total_views=0
+    return render(request,'images/image/detail.html',{
                                                       'image':image,
                                                       'total_views':total_views,
                                                       'total_likes':total_likes})

@@ -12,7 +12,7 @@ class Profile(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_of_birth=models.DateField(blank=True, null=True)
     # in order to upload images, we need to add some lines in settings.py
-    photo=models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
+    photo=models.ImageField(upload_to='users/%Y/%m/%d/', blank=True,default='default/default_profile.png')
 
     def __str__(self):
         return 'Profile for user {}'.format(self.user.username)
