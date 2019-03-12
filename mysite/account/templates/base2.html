@@ -64,14 +64,14 @@
                         <a href="#">Models <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                         <input type="checkbox" id="drop-2">
                         <ul>
-                            <li><a href="#" class="drop-text">Chatbot For Fun</a></li>
+                            <li><a href="{% url 'mlmodels:chatbot_page' %}" class="drop-text">Chatbot</a></li>
                             <li><a href="#" class="drop-text">ML</a></li>
                             <li><a href="#" class="drop-text">DP</a></li>
                         </ul>
                     </li>
                     {% if request.user.is_authenticated %}
                         <li>
-                            <a href="{% url "user_dashboard" %}">Hello {{ request.user.first_name }},Dashboard here</a>
+                            <a href="{% url "user_dashboard" %}">{{ request.user.first_name }},Dashboard here</a>
                             <a href="{% url "logout" %}">Logout Here</a>
                         </li>
                     {% else %}
