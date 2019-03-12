@@ -41,7 +41,7 @@ def lemTokens(tokens):
 def generateResponse(userInput, sentences, askResponseDict, ql, similarityThredhold=0.7):
     # prevent bad input
     if ((similarityThredhold > 1) or (similarityThredhold < 0)):
-        similarityThredhold = 0.5
+        similarityThredhold = 0.7
     sentences.append(userInput)
     # vetorize sentences and userinput for fllowing similarity calculation
     vertorizedSentences = TfidfVectorizer(tokenizer=lemTokens, stop_words='english').fit_transform(sentences)
@@ -51,9 +51,12 @@ def generateResponse(userInput, sentences, askResponseDict, ql, similarityThredh
     idx = np.argmax(valsWithoutLast, axis=0)
     # return response
     if (vals[0][idx] < similarityThredhold):
-        robotResponse = "Your input keywords donot exist in my knowledge"
+        robotResponse = ["Your input keywords donot exist in my knowledge","I donot know what you are talking",'Sorry I have no idea','Sorry I donot understand'
+            ,'Sorry I can not reply',"Pls change a topic","Looks like I still need to learn more"]
+        import random
+        index=random.randint(0,8)
         sentences.remove(userInput)
-        return robotResponse
+        return robotResponse[index]
     else:
         question = ql[idx]
         print("matched from db:"+question)
