@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'haystack',
     'article.apps.ArticleConfig',
     'images.apps.ImagesConfig',
+    'mlmodels.apps.MlmodelsConfig',
     'taggit',
     'sorl.thumbnail',#used to display thumnail of image, need to download package at first
     # 'social_django' , # this app package helps us to allow users to login using their social services, after adding this,

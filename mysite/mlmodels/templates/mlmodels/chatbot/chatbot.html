@@ -1,0 +1,79 @@
+{% extends "base2.html" %}
+
+{%  block title %}
+    <p>Chatbot Page</p>
+{% endblock %}
+
+{% block content %}
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="row">
+                <div class="col-lg-6 offset-3">
+                    <div class="botui-app-container" id="hello-world" style="border: solid black">
+                        <bot-ui></bot-ui>
+                    </div>
+                    <br>
+                    <div id="chat">
+                        <p class="text-center"><button v-on:click="addaction" class="btn-outline-primary btn-lg">Chat</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        var botui = new BotUI('hello-world');
+        var chat_button = new Vue({
+            el: '#chat',
+            data: {
+                counter: 0
+            },
+            methods: {
+                addaction: function(event) {
+                    if (event) {
+                        botui.action.text({
+                            action: {
+                                icon:'weixin',
+                                {#cssClass:['btn-success'],#}
+                                placeholder: 'Input Here'
+                            }
+                        }).then(function(res) {
+                            var response = NaN;
+
+                            //                            AJAX**********************
+                            $.post('{% url "mlmodels:chat" %}', {
+                                    input: res.value
+                                },
+                                function(data) {
+                                    if (data['status'] == 'ok') {
+                                        response = data['response'];
+                                        return botui.message.bot({
+                                            delay: 1000,
+                                            loading: true,
+                                            content: response
+                                        })
+                                    }
+                                    else{
+                                        return botui.message.bot({
+                                            delay: 1000,
+                                            loading: true,
+                                            content: "Sorry did not receive the input!"
+                                        })
+                                    }
+                                }); //end of post AJAX
+                            //                            *************************
+
+                        })//end of then
+                    }
+                } //end of addaction function
+            }
+        }) //end of Vue of Example
+
+        botui.message.add({
+            loading: true,
+            delay: 2000,
+            content: 'Hello, welcome to CRN chatbot!'
+        });
+        //        what I add
+    </script>
+{% endblock %}

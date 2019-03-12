@@ -29,6 +29,7 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('social-auth/',include('social_django.urls',namespace='social')),#in order to make this work, edit /etc/hosts
     path('images/',include('images.urls',namespace='images')),
+    path('mlmodels/',include('mlmodels.urls',namespace='mlmodels'))
 ]
 
 if settings.DEBUG:
