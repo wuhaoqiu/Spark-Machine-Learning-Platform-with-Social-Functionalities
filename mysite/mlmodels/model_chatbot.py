@@ -7,7 +7,7 @@ file_qrDict = 'qrDict.pk'
 file_sentenceTokens = 'sentenceTokens.pk'
 file_ql = 'ql.pk'
 
-
+# read local serialized clean dataset
 with open(os.path.join(os.path.dirname(__file__), 'picklized_files/'+file_qrDict) ,'rb') as f:
     qrDict = pickle.load(f)
 
