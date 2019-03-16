@@ -173,9 +173,7 @@ AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
                          'account.authentication.EmailAuthBackend',]
                          # 'social_core.backends.facebook.FacebookOAuth2'
 # right now still cannot login with facebook, probably in the future, when this website is using https, this function will be enabled
-# SOCIAL_AUTH_FACEBOOK_KEY='1306085002879552'
-# SOCIAL_AUTH_FACEBOOK_SECRET='446cd3c00c83b4b0f5d64ce1819ecf76'
-# SOCIAL_AUTH_FACEBOOK_SCOPE='email'
+
 
 # add allowed host,before setting this ,you need to modify /etc/hosts file in your system, and add mysite.com 127.0.0.1 to that file
 ALLOWED_HOSTS=['mysite.com','localhost','127.0.0.1','38a1dc54.ngrok.io']

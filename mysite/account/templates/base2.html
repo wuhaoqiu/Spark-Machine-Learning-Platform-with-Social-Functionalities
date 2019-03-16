@@ -71,8 +71,10 @@
                     </li>
                     {% if request.user.is_authenticated %}
                         <li>
-                            <a href="{% url "user_dashboard" %}">{{ request.user.first_name }},Dashboard here</a>
-                            <a href="{% url "logout" %}">Logout Here</a>
+                            <a href="{% url "user_dashboard" %}">{{ request.user.first_name }}</a>
+                        </li>
+                        <li>
+                            <a href="{% url "logout" %}">Logout</a>
                         </li>
                     {% else %}
                         <li><a href="{% url "login" %}">Log-in</a></li>
