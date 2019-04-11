@@ -20,6 +20,7 @@ with open(os.path.join(os.path.dirname(__file__), 'picklized_files/'+file_ql) ,'
 """
 generate Response
 """
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np

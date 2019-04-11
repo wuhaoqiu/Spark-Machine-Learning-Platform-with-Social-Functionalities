@@ -1,4 +1,4 @@
-django==2.0.12
+django==2.1.7
 
 django_taggit==0.22.2
 
@@ -19,3 +19,5 @@ django-crispy-forms
 nltk
 numpy
 sklearn
+
+mysqlclient
