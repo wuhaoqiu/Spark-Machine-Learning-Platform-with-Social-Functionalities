@@ -84,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/mlmodels/shape_predict/shape_predict_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="87" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
+            <state relative-caret-position="489">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#31#59#0" expanded="true" />
               </folding>
@@ -229,32 +229,6 @@
               <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
               <item name="account" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="mlmodels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="mlmodels" type="462c0819:PsiDirectoryNode" />
-              <item name="shape_predict" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -476,12 +450,12 @@
       <workItem from="1554864247915" duration="659000" />
       <workItem from="1555011090978" duration="859000" />
       <workItem from="1555101814689" duration="12499000" />
-      <workItem from="1555126207680" duration="2004000" />
+      <workItem from="1555126207680" duration="3126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300827000" />
+    <option name="totallyTimeSpent" value="301949000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -494,22 +468,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1860" height="1098" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13982102" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32797858" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49944073" weight="0.3279743" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.4958042" weight="0.32797858" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.5458613" visible="true" weight="0.2658092" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.54530203" visible="true" weight="0.2647374" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.36144578" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32841823" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.4541387" side_tool="true" visible="true" weight="0.2658092" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.454698" side_tool="true" visible="true" weight="0.2647374" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.44854587" weight="0.2561629" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.63076925" weight="0.3253012" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -977,8 +950,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/mlmodels/shape_predict/shape_predict_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="87" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
+        <state relative-caret-position="489">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#31#59#0" expanded="true" />
           </folding>
