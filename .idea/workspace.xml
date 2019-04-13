@@ -96,11 +96,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/mlmodels/templates/mlmodels/shape_predict/shape_predict.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
+            <state relative-caret-position="230">
               <caret line="31" column="122" selection-start-line="31" selection-start-column="122" selection-end-line="31" selection-end-column="122" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mysite/account/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="56" column="118" selection-start-line="56" selection-start-column="118" selection-end-line="56" selection-end-column="118" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysite/account/templates/base2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="67" column="28" lean-forward="true" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="122" />
             </state>
           </provider>
         </entry>
@@ -197,8 +215,6 @@
         <option value="$PROJECT_DIR$/mysite/images/templates/images/image/detail.html" />
         <option value="$PROJECT_DIR$/mysite/account/views.py" />
         <option value="$PROJECT_DIR$/mysite/mysite/settings.py" />
-        <option value="$PROJECT_DIR$/mysite/account/templates/index.html" />
-        <option value="$PROJECT_DIR$/mysite/account/templates/base2.html" />
         <option value="$PROJECT_DIR$/mysite/account/migrations/0004_auto_20190307_2301.py" />
         <option value="$PROJECT_DIR$/mysite/mlmodels/model_chatbot.py" />
         <option value="$PROJECT_DIR$/mysite/article/tests.py" />
@@ -210,6 +226,8 @@
         <option value="$PROJECT_DIR$/mysite/mlmodels/views.py" />
         <option value="$PROJECT_DIR$/mysite/mlmodels/shape_predict/shape_predict_model.py" />
         <option value="$PROJECT_DIR$/mysite/mlmodels/templates/mlmodels/shape_predict/shape_predict.html" />
+        <option value="$PROJECT_DIR$/mysite/account/templates/base2.html" />
+        <option value="$PROJECT_DIR$/mysite/account/templates/index.html" />
       </list>
     </option>
   </component>
@@ -241,30 +259,14 @@
               <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
               <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
               <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="shape_predict" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="shape_predict" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
-              <item name="mysite" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="shape_predict" type="462c0819:PsiDirectoryNode" />
-              <item name="uploaded" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
@@ -497,12 +499,12 @@
       <workItem from="1554864099292" duration="107000" />
       <workItem from="1554864247915" duration="659000" />
       <workItem from="1555011090978" duration="859000" />
-      <workItem from="1555101814689" duration="11978000" />
+      <workItem from="1555101814689" duration="12358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298302000" />
+    <option name="totallyTimeSpent" value="298682000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -517,13 +519,13 @@
     <frame x="-9" y="-9" width="1860" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13814318" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13814318" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32797858" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.4958042" weight="0.32797858" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.5464206" visible="true" weight="0.26688102" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.5464206" visible="true" weight="0.26688102" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.36144578" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -718,24 +720,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/account/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="62" column="90" selection-start-line="62" selection-start-column="90" selection-end-line="62" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/article/templates/article/articles/article_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="683">
           <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/account/templates/base2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="73" column="109" selection-start-line="73" selection-start-column="109" selection-end-line="73" selection-end-column="109" />
         </state>
       </provider>
     </entry>
@@ -1000,8 +988,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/mlmodels/templates/mlmodels/shape_predict/shape_predict.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
+        <state relative-caret-position="230">
           <caret line="31" column="122" selection-start-line="31" selection-start-column="122" selection-end-line="31" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/account/templates/base2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="67" column="28" lean-forward="true" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/account/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="56" column="118" selection-start-line="56" selection-start-column="118" selection-end-line="56" selection-end-column="118" />
         </state>
       </provider>
     </entry>
