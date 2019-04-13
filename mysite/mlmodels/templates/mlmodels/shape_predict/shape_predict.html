@@ -44,6 +44,7 @@
         $('button.upload').click(function (e) {
             var response = NaN;
             //                            AJAX**********************
+            {#send ajax request to shape_predict#}
             $.post('{% url "mlmodels:shape_predict" %}', {
                     {#no input#}
                 },

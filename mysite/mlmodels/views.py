@@ -45,13 +45,15 @@ def shape_predict(request):
 # responsible for storing file
 def shape_predict_page(request):
     from mlmodels.shape_predict.shape_predict_model import store_file
+    from django.http.response import HttpResponseRedirect
+    from django.urls import reverse
     if request.method=='POST':
         form=UploadMatForm(request.POST,request.FILES)
         if form.is_valid():
-            store_file(request.FILES['file'])
-            messages.success(request, 'upload successfully')
-            from django.http.response import HttpResponseRedirect
-            from django.urls import reverse
+            if store_file(request.FILES['file']):
+                messages.success(request, 'upload successfully')
+            else:
+                messages.error(request,'uploaded file, pls check your file format')
             return HttpResponseRedirect(reverse('mlmodels:shape_predict_page'))
     else:
         form=UploadMatForm()
