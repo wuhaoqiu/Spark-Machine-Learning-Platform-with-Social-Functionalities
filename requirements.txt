@@ -1,23 +1,31 @@
-django==2.1.7
+django==2.0.8
 
 django_taggit==0.22.2
 
 Markdown==2.6.11
 
 django-haystack
+
 whoosh==2.7.4
 
 pillow==5.1.0
+
 social-auth-app-django==2.1.0
 
 sorl-thumbnail==12.4.1
 
+
 redis==2.10.6
+
 
 django-crispy-forms
 
 nltk
+
 numpy
+
 sklearn
 
 mysqlclient
+
+tensorflow==2.0.0-alpha0

@@ -140,3 +140,5 @@ def image_like(request):
         except Exception:
             JsonResponse({'status': 'error'})
     return JsonResponse({'status':'error'})
+
+
