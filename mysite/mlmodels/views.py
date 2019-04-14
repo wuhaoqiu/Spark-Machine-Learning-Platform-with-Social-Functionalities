@@ -14,7 +14,7 @@ from common.decorators import ajax_required
 @login_required
 @ajax_required
 def chat(request):
-    from .model_chatbot import reply
+    from mlmodels.chatbot.model_chatbot import reply
     user_input = request.POST.get('input')
     if user_input:
         try:

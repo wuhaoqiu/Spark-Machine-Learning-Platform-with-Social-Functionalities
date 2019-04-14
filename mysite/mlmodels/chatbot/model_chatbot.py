@@ -8,13 +8,13 @@ file_sentenceTokens = 'sentenceTokens.pk'
 file_ql = 'ql.pk'
 
 # read local serialized clean dataset
-with open(os.path.join(os.path.dirname(__file__), 'picklized_files/'+file_qrDict) ,'rb') as f:
+with open(os.path.join(os.path.dirname(__file__), '../picklized_files/'+file_qrDict) ,'rb') as f:
     qrDict = pickle.load(f)
 
-with open(os.path.join(os.path.dirname(__file__), 'picklized_files/'+file_sentenceTokens) ,'rb') as f:
+with open(os.path.join(os.path.dirname(__file__), '../picklized_files/'+file_sentenceTokens) ,'rb') as f:
     sentenceTokens = pickle.load(f)
 
-with open(os.path.join(os.path.dirname(__file__), 'picklized_files/'+file_ql) ,'rb') as f:
+with open(os.path.join(os.path.dirname(__file__), '../picklized_files/'+file_ql) ,'rb') as f:
     ql = pickle.load(f)
 
 """
