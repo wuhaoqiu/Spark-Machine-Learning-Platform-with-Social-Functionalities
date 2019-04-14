@@ -3,21 +3,24 @@ from scipy.io import loadmat
 import numpy as np
 import tensorflow as tf
 
-def store_file(input_data):
+def store_file(input_data,user_name):
     print(input_data.name)
     print(input_data.content_type)
     print(input_data.size)
+    print(str(user_name))
     if input_data.content_type !='application/octet-stream' or input_data.size > 100000:
         return False
     else:
         # overwrite the file if it exists
-        with open('mysite/media/shape_predict/uploaded/data.mat', 'wb+') as destination:
+        file_name=str(user_name)+'_data.mat'
+        with open('mysite/media/shape_predict/uploaded/'+file_name, 'wb+') as destination:
             for chunk in input_data.chunks():
                 destination.write(chunk)
         return True
-def predict():
+def predict(user_name):
     try:
-        x = loadmat('C:/Users/whq672437089/Envs/engr597-unstable/mysite/media/shape_predict/uploaded/data.mat')
+        file_name = str(user_name) + '_data.mat'
+        x = loadmat('C:/Users/whq672437089/Envs/engr597-unstable/mysite/media/shape_predict/uploaded/'+file_name)
         input_data = np.zeros((1, 100, 3))
         x_values = list(x.values())
         # usually the last element is required data
