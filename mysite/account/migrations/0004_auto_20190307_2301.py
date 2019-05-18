@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0011_remove_user_following'),
+        # ('auth', '0011_remove_user_following'),
         ('account', '0003_auto_20190307_1620'),
     ]
 
