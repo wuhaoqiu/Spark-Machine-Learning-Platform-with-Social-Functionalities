@@ -27,6 +27,7 @@ In terms of socal funtionalities, this system has four modules:
 * Haystack-whoosh for Full Text Search.
 * Bootstrap and Vue.js and AJAX for Frontend.
 * MySQL, Redis, MongoDB for Data Storage.
+* Shell Script to periodically Clear Files
 
 
 ### Part of Screenshots
