@@ -14,7 +14,7 @@ social-auth-app-django==2.1.0
 
 sorl-thumbnail==12.4.1
 
-redis==2.10.6
+redis
 
 django-crispy-forms
 
@@ -26,4 +26,12 @@ sklearn
 
 mysqlclient
 
-tensorflow==2.0.0-alpha0
+keras
+
+tensorframes
+kafka-python
+tensorflowonspark
+jieba
+pyspark
+
+pymongo
