@@ -1,0 +1,82 @@
+{% extends "base2.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <p>Shape Predict Page</p>
+{% endblock %}
+
+{% block content %}
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div class="row">
+            <div class="col-lg-6 image-container" style="overflow: scroll;height: 500px">
+
+            </div>
+            {#            end of .mat file upload form#}
+            <div class="col-lg-6">
+                <div class="botui-app-container" id="hello-world" style="border: solid black">
+                    <bot-ui></bot-ui>
+                </div>
+                <br>
+                <div id="chat">
+                    <p class="text-center">
+                        <button type="submit" class="btn btn-primary predict" style="max-width: 300px">predict it!
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        var botui = new BotUI('hello-world');
+
+        botui.message.add({
+            content: 'Hello, Welcome to predict shape score!'
+        });
+        //        what I add
+
+        setInterval(function () {
+            $.post('{% url "mlmodels:realtime_shape_predict" %}', {
+                    {#no input#}
+                },
+                function (data) {
+                    if (data['status'] == 'ok') {
+                        response = data['response'];
+
+                        var newCanvas =
+                            $('<canvas/>', {'class': 'shape_plot'})
+                                .width(100)
+                                .height(100);
+
+                        var myChart = new Chart(newCanvas, {
+                            type: 'line',
+                            data: {
+                                labels: [0,20 ,40 ,60, 80, 100,],
+                                datasets: [{
+                                    data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
+                                    label: "Africa",
+                                    borderColor: "#3e95cd",
+                                    fill: false
+                                },
+                                ]
+                            },
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: 'Shape Data'
+                                }
+                            }
+                        });
+
+                        $(".image-container").append(newCanvas)
+                        return botui.message.bot({
+                            content: response
+                        })
+                    }
+                }); //end of post AJAX;
+        }, 10000);
+
+
+    </script>
+{% endblock %}

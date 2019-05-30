@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import UploadMatForm
 # Create your views here.
@@ -30,6 +31,20 @@ def chat(request):
 def chatbot_page(request):
     return render(request,'mlmodels/chatbot/chatbot.html')
 
+
+
+@login_required
+@csrf_exempt
+def realtime_shape_predict(request):
+    from mlmodels.shape_predict.shape_predict_model import predict
+    if request.method=='POST':
+        import time
+        while True:
+            time.sleep(3)
+            return JsonResponse({'status': 'ok','response':'repeat'})
+    else:
+        # return JsonResponse({'status': 'error','response':"request method is not post"})
+        return render(request, 'mlmodels/realtime_shape_predict/realtime_shape_predict.html')
 
 
 # responsible for prediction
