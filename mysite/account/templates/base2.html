@@ -66,7 +66,7 @@
                         <ul>
                             <li><a href="{% url 'mlmodels:chatbot_page' %}" class="drop-text">Chatbot</a></li>
                             <li><a href="{% url 'mlmodels:shape_predict_page' %}" class="drop-text">Shape Predict</a></li>
-                            <li><a href="#" class="drop-text">DP</a></li>
+                            <li><a href="{% url 'mlmodels:realtime_shape_predict' %}" class="drop-text">Realtime SP</a></li>
                         </ul>
                     </li>
                     {% if request.user.is_authenticated %}
@@ -148,10 +148,7 @@
             </div>
 
             <div class="col-lg-3 col-md-6 col-sm-6 footer-bottom-txt">
-                <form class="form-inline mt-2 mt-md-0">
-                    <button class="btn btn-outline-success my-2 my-sm-0"><a href="{% url 'article:haystack_search' %}">Click
-                        Here to Search</a></button>
-                </form>
+                    <li class="active"><a href="{% url 'article:haystack_search' %}">Click Here to Search</a></li>
             </div>
 
         </div>
@@ -188,6 +185,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 <script src=" https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 
 {% block extra_scripts %}
 {% endblock %}

@@ -27,7 +27,7 @@ urlpatterns = [
     # each app can only have one application name, but can have multiple instance names
     path('articles/',include('article.urls',namespace='article')),
     path('account/',include('account.urls')),
-    path('social-auth/',include('social_django.urls',namespace='social')),#in order to make this work, edit /etc/hosts
+    # path('social-auth/',include('social_django.urls',namespace='social')),#in order to make this work, edit /etc/hosts
     path('images/',include('images.urls',namespace='images')),
     path('mlmodels/',include('mlmodels.urls',namespace='mlmodels'))
 ]

@@ -20,7 +20,7 @@ except Exception:
 
 @login_required
 def image_list(request):
-    images = Image.objects.all()
+    images = Image.objects.order_by('created')
     paginator=Paginator(images,4)
     page=request.GET.get('page')
     try:
@@ -63,7 +63,7 @@ def user_liked_images(request):
 @login_required
 def user_created_images(request):
     images=Image.objects.filter(user=request.user)
-    paginator = Paginator(images, 6)
+    paginator = Paginator(images, 4)
     page = request.GET.get('page')
     try:
         one_page_images = paginator.page(page)
@@ -79,19 +79,22 @@ def image_create(request):
     if request.method == 'POST':
         # form is sent
         form = ImageCreateForm(data=request.POST,files=request.FILES)
-        if form.is_valid():
-            # form data is valid
-            cd = form.cleaned_data
-            # create a new image instance by using form.save()
-            new_item = form.save(commit=False)
-            # assign current user to the item so that we can know who uploads this image
-            new_item.user = request.user
-            new_item.save()
-            messages.success(request, 'Image added successfully')
-            # redirect to new created item detail view
-            return redirect(new_item.get_absolute_url())
-        else:
-            messages.error(request,'fail to upload')
+        try:
+            if form.is_valid():
+                # form data is valid
+                cd = form.cleaned_data
+                # create a new image instance by using form.save()
+                new_item = form.save(commit=False)
+                # assign current user to the item so that we can know who uploads this image
+                new_item.user = request.user
+                new_item.save()
+                messages.success(request, 'Image added successfully')
+                # redirect to new created item detail view
+                return redirect(new_item.get_absolute_url())
+            else:
+                messages.error(request,'fail to upload')
+        except:
+            messages.error(request, 'fail to upload,may due to image name containing none english character')
     else:
         # assume data comes from GET method using js tool, containing a url and title attributes
         form = ImageCreateForm()

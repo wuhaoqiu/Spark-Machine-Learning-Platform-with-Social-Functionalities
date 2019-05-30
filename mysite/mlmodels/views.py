@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import UploadMatForm
 # Create your views here.
@@ -31,6 +32,62 @@ def chatbot_page(request):
     return render(request,'mlmodels/chatbot/chatbot.html')
 
 
+
+"""
+mongo db connection part
+"""
+from datetime import datetime, date,timedelta
+import pymongo
+from ast import literal_eval
+import numpy as np
+
+dbname = 'movement_shape_predict'
+# colname=date.today().strftime('%Y-%m-%d')
+colname = 'movement_shape_predict'
+
+try:
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+except:
+    print('fail to connect to mongodb, pls check connection')
+
+# collection in databases is named by current date
+mydb = myclient[dbname]
+collist = mydb.list_collection_names()
+mycol = mydb[colname]  # if not exit, mongodb create one for you
+if not (colname in collist):
+    mycol.insert_one({'time': 'test', 'data': 'test', 'result': 'test'})
+
+previous_time=None
+# mongo spark real-time prediction
+@login_required
+@csrf_exempt
+def realtime_shape_predict(request):
+    if request.method=='POST':
+        global previous_time
+        try:
+            record = mycol.find_one(sort=[('_id', pymongo.DESCENDING)])
+            t = record['time']
+            print(previous_time)
+            if not (t==previous_time or t=='test'):
+                previous_time=t
+                result=record['result']
+                string_array=record['data']
+                num_array = np.array(literal_eval(string_array))
+                shape_part = num_array[0][:100]
+                string_shape_part = np.array2string(shape_part, precision=5, separator=',', suppress_small=False)
+                print(string_shape_part)
+                return JsonResponse({'status': 'ok', 'response': result,'time':t,'shape_data':string_shape_part})
+            else:
+                return JsonResponse({'status': 'error', 'response': 'error'})
+        except:
+            print('sth wrong,may due to failing to convert data list from string to number')
+            return JsonResponse({'status': 'error','response':'error'})
+    else:
+        return render(request, 'mlmodels/realtime_shape_predict/realtime_shape_predict.html')
+
+"""
+end of mongo db connection part
+"""
 
 # responsible for prediction
 @login_required

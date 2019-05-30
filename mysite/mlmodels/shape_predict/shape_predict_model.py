@@ -2,6 +2,7 @@
 from scipy.io import loadmat
 import numpy as np
 import tensorflow as tf
+import keras
 
 def store_file(input_data,user_name):
     print(input_data.name)
@@ -20,7 +21,7 @@ def store_file(input_data,user_name):
 def predict(user_name):
     try:
         file_name = str(user_name) + '_data.mat'
-        x = loadmat('C:/Users/whq672437089/Envs/engr597-unstable/mysite/media/shape_predict/uploaded/'+file_name)
+        x = loadmat('mysite/media/shape_predict/uploaded/'+file_name)
         input_data = np.zeros((1, 100, 3))
         x_values = list(x.values())
         # usually the last element is required data
@@ -29,7 +30,7 @@ def predict(user_name):
             return 'data dimension is not correct, dimension should be (3,100)'
         else:
             input_data[None, :, :] = x_array.T
-            model2 = tf.keras.models.load_model('C:/Users/whq672437089/Envs/engr597-unstable/mysite/media/shape_predict/models/movement_shape_predict.h5')
+            model2 = keras.models.load_model('mysite/media/shape_predict/models/movement_shape_predict.h5')
             d = {0: 'bad curve', 1: 'medium curve', 2: 'good curve'}
             # predict result
             predict_result=d[np.argmax(model2.predict(input_data))]
@@ -37,16 +38,4 @@ def predict(user_name):
     except Exception:
         return 'errors happen when reading uploaded data'
 
-if __name__=='__main__':
-    x = loadmat('C:/Users/whq672437089/Envs/engr597-unstable/mysite/media/shape_predict/uploaded/data.mat')
-    input_data = np.zeros((1, 100, 3))
-    x_values = list(x.values())
-    x_array = np.array(x_values[-1])
-    if x_array.shape != (3, 100):
-        print('yes')
-    else:
-        input_data[None, :, :] = x_array.T
-        model2 = tf.keras.models.load_model(
-            'C:/Users/whq672437089/Envs/engr597-unstable/mysite/media/shape_predict/models/movement_shape_predict.h5')
-        d = {0: 'bad curve', 1: 'medium curve', 2: 'good curve'}
-        predict_result = d[np.argmax(model2.predict(input_data))]
+

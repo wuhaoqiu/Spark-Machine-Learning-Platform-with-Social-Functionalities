@@ -1,0 +1,80 @@
+{% extends "base2.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <p>Shape Predict Page</p>
+{% endblock %}
+
+{% block content %}
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div class="row">
+            <div class="col-lg-6 image-container" style="overflow: scroll;height: 450px">
+
+            </div>
+            {#            end of .mat file upload form#}
+            <div class="col-lg-6">
+                <div class="botui-app-container" id="hello-world" style="border: solid black">
+                    <bot-ui></bot-ui>
+                </div>
+                <br>
+                <div id="chat">
+                    <p class="text-center">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        var botui = new BotUI('hello-world');
+        botui.message.add({
+            content: 'Hello, This CRN realtime shape prediction'
+        });
+        //        what I add
+        setInterval(function () {
+            $.post('{% url "mlmodels:realtime_shape_predict" %}', {
+                    {#no input#}
+                },
+                function (data) {
+                    if (data['status'] == 'ok') {
+                        var response = data['response'];
+                        var t=data['time']
+                        var shape_data=data['shape_data']
+                        shape_data = shape_data.split(',').map(Number)
+
+                        var newCanvas =
+                            $('<canvas/>', {'class': 'shape_plot'})
+                                .width(100)
+                                .height(100);
+
+                        var myChart = new Chart(newCanvas, {
+                            type: 'line',
+                            data: {
+                                labels: [...Array(100).keys()],
+                                datasets: [{
+                                    data: shape_data,
+                                    label: "Movement Altitude",
+                                    borderColor: "#3e95cd",
+                                    fill: false
+                                },
+                                ]
+                            },
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: t,
+                                }
+                            }
+                        });
+
+                        $(".image-container").append(newCanvas)
+                        return botui.message.bot({
+                            content: response+','+t
+                        })
+                    }
+                }); //end of post AJAX;
+        }, 1400);
+
+    </script>
+{% endblock %}

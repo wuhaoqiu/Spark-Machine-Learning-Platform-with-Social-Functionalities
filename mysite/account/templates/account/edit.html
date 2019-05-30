@@ -9,19 +9,7 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <h2 class="text-center" style="color: white">Edit your account</h2>
                     <p class="text-center" style="color: white">You can edit your account using the following form:</p>
-                    {#            {% for field in user_form %}#}
-                    {#                <div class="form-group">#}
-                    {#                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>#}
-                    {#                    <p class="text-center" style="color: white">{{ field }}</p>#}
-                    {#                </div>#}
-                    {#            {% endfor %}#}
                     {{ user_form | crispy }}
-                    {#           {% for field in profile_form %}#}
-                    {#                <div class="form-group">#}
-                    {#                    <p class="text-center" style="color: white"><label>{{ field.label_tag }}</label></p>#}
-                    {#                    <p class="text-center" style="color: white">{{ field }}</p>#}
-                    {#                </div>#}
-                    {#            {% endfor %}#}
                     <p><b>Select clear checkbox to clear profile photo</b></p>
                     {{ profile_form | crispy }}
                     {% csrf_token %}
