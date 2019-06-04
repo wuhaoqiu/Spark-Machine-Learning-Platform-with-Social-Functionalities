@@ -9,6 +9,8 @@ else
 fi
 
 #need to change configuration file according to your environment
-/root/redis/redis-4.0.14/src/redis-server
+#/root/redis/redis-4.0.14/src/redis-server
 
-mongod -f /root/mongodb/data/mongodb.conf
+#mongod -f /root/mongodb/data/mongodb.conf
+
+#bash $SPARK_HOME/bin/spark-submit /root/github/engr597-v3/engr597-stable/files_in_other_postitions/spark_task.py

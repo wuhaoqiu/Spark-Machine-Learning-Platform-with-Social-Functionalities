@@ -83,5 +83,3 @@ movement_data.foreachRDD(saveRDD)
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
 
-#assume in $SPARK_HOME
-#./bin/spark-submit scripts/spark_task.py
