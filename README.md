@@ -50,7 +50,7 @@ Linux-CentOS 7
 
 * Origin Data Series from MATLAB Android Sensor
 
-![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/origin.png)
+![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/original.png)
 
 * Curves after Segmentation
 
