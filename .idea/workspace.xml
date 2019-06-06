@@ -48,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/images/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="1045">
               <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
               <folding>
                 <element signature="e#0#72#0" expanded="true" />
@@ -57,15 +57,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/files_in_other_postitions/my_service.sh">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="113" selection-start-line="15" selection-start-column="113" selection-end-line="15" selection-end-column="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mysite/mlmodels/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="55" column="64" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/files_in_other_postitions/spark_task.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-667">
+            <state relative-caret-position="1501">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -114,8 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mysite/account/templates/registration/password_reset_complete.html" />
-        <option value="$PROJECT_DIR$/mysite/account/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/mysite/article/templates/article/base.html" />
         <option value="$PROJECT_DIR$/mysite/article/templates/article/articles/article_list.html" />
         <option value="$PROJECT_DIR$/mysite/article/forms.py" />
@@ -165,6 +180,8 @@
         <option value="$PROJECT_DIR$/mysite/images/templates/images/image/create.html" />
         <option value="$PROJECT_DIR$/mysite/account/templates/account/user/user_article_list.html" />
         <option value="$PROJECT_DIR$/mysite/account/templates/registration/password_reset_form.html" />
+        <option value="$PROJECT_DIR$/files_in_other_postitions/my_service.sh" />
+        <option value="$PROJECT_DIR$/files_in_other_postitions/spark_task.py" />
       </list>
     </option>
   </component>
@@ -202,6 +219,12 @@
               <item name="mysite" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="engr597-unstable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="engr597-unstable" type="462c0819:PsiDirectoryNode" />
+              <item name="mysite" type="462c0819:PsiDirectoryNode" />
+              <item name="mlmodels" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -212,7 +235,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="G:/engr597-unstable" />
+    <property name="last_opened_file_path" value="G:/environment/engr597-stable" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -426,12 +449,14 @@
       <workItem from="1555204545542" duration="14200000" />
       <workItem from="1556127345771" duration="1274000" />
       <workItem from="1558138963327" duration="6528000" />
-      <workItem from="1559604621958" duration="2152000" />
+      <workItem from="1559604621958" duration="3969000" />
+      <workItem from="1559670877040" duration="70000" />
+      <workItem from="1559670974244" duration="21000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="326196000" />
+    <option name="totallyTimeSpent" value="328104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -446,7 +471,7 @@
     <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13356644" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13636364" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -637,16 +662,6 @@
           <caret line="40" column="105" lean-forward="true" selection-start-line="40" selection-start-column="105" selection-end-line="40" selection-end-column="105" />
           <folding>
             <element signature="e#31#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/mlmodels/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
-          <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -859,7 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/images/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="1045">
           <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
           <folding>
             <element signature="e#0#72#0" expanded="true" />
@@ -867,17 +882,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/files_in_other_postitions/my_service.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="113" selection-start-line="15" selection-start-column="113" selection-end-line="15" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/files_in_other_postitions/spark_task.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-667">
+        <state relative-caret-position="1501">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/files_in_other_postitions/my_service.sh">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/mysite/mlmodels/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="55" column="64" selection-start-line="55" selection-start-column="64" selection-end-line="55" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
