@@ -52,7 +52,7 @@ Linux-CentOS 7
 
 ![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/original.png)
 
-* Curves after Segmentation
+* Curves after Smoothing, Normalization and Segmentation
 
 ![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/segmented.png)
 
