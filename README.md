@@ -1,18 +1,26 @@
-# Spark & Machine Learning Platform with Social Functionalities
+# Spark & Machine Learning Platform for Strain Movement Curve with Social Functionalities
 
 ### Author: 
 
 Haoqiu Wu
 
-### Brief Introduction
+### Operating System
 
-This system is developed on Linux system, aiming at providing our CRN lab with a Spark & Machine Learning Model Deployment Platform with Social Functionalities.
-In terms of ML platform, there are three functionalities so far:
-* Real-time Prediction with Spark for Movement Data from Sensor.
-* Prediction for uploaded Movement Data.
+Linux-CentOS 7
+
+### Spark & ML
+
+* Given a seires of strain movement data from a MATLAB Android Sensor in our CRN lab, I segment it into separate curves and smooth & normalize them to 100 length with amplitude from 0~1.
+* Data augmentation: Calculate the first and second derivatives for those curves.
+* Build two-layer LSTM RNN model.
+* Fit data of curves with corresponding derivatives into this model.
+* Grid search with CV.
+* Store the best model.
+* Use model for real-time prediction with Spark Streaming.
+* Use model for prediction for uploaded data file.
 * An Entertaiment Chatbot.
 
-In terms of socal funtionalities, this system has four modules:
+### Social Functionality
 * Account Module
 * Article Module
 * Image Module
@@ -20,12 +28,13 @@ In terms of socal funtionalities, this system has four modules:
 
 ### Techniques Used in this System: 
 
+* MATLAB for Time Series Data Segmentation and Smoothing and Augmentation.
 * Keras for RNN Model.
 * Spark Streaming for Real-time Process for Sensor Data.
 * Sklearn and NLTK for Chatbot by Word-Embedding and Cosine-Similarity.
 * Python Django for Backend.
 * Haystack-whoosh for Full Text Search.
-* Bootstrap and Vue.js and AJAX for Frontend.
+* Bootstrap and jQuery and AJAX for Frontend.
 * MySQL, Redis, MongoDB for Data Storage.
 
 
