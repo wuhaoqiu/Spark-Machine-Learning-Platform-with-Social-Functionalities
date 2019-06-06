@@ -44,6 +44,18 @@ Linux-CentOS 7
 
 ![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/overall.png)
 
+* Sensor 
+
+![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/photo.png)
+
+* Origin Data Series from MATLAB Android Sensor
+
+![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/origin.png)
+
+* Curves after Segmentation
+
+![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/segmented.png)
+
 * Main Page
 
 ![alt text](https://github.com/wuhaoqiu/engr597-stable/blob/Linux-Version/screenshots/main_page.png)
